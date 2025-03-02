@@ -180,7 +180,7 @@ widgets:
       api_key: "f5f6c59de5b84ee4bd7132309251601"
       update_interval: 600
       hide_decimal: true
-      location: "Philppines Sibulan 6201"
+      location: "Philippines Sibulan 6201"
       callbacks:
         on_left: "toggle_label"
       icons:
