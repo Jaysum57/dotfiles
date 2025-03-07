@@ -1,1 +1,1 @@
-# jaysumDotfiles
+# jaysum's dotfiles
