@@ -14,8 +14,8 @@ bars:
       position: "top"
       center: false
     blur_effect:
-      enabled: true
-      acrylic: false 
+      enabled: false
+      acrylic: false
       dark_mode: true
       round_corners: false
       border_color: None
@@ -24,50 +24,26 @@ bars:
       windows_app_bar: true
     dimensions:
       width: "100%"
-      height: 32
+      height: 50
     padding:
       top: 0
       left: 0
       bottom: 0
       right: 0
     widgets:
-      left: ["komorebi_workspaces","taskbar","active_window"] #"home",
+      left: ["home","komorebi_workspaces","media"]
       center: ["clock"]
-      right: ["traffic","update","github","weather","whkd","volume","ai","power_menu"] #"ai","wallpapers",
+      right: ["wallpapers","wifi","volume","weather","power_menu"] #"taskbar"
 widgets:
-  update:
-    type: "yasb.update_check.UpdateCheckWidget"
-    options:
-      winget_update:
-        enabled: true
-        label: "<span>\uf0ab</span>{count}"
-        interval: 30
-        exclude: []
-      windows_update:
-        enabled: true
-        label: "<span>\uf0ab</span>{count}"
-        interval: 240
-        exclude: []
-  active_window:
-    type: "yasb.active_window.ActiveWindowWidget"
-    options:
-      label: "{win[title]}"
-      label_alt: "[class_name='{win[class_name]}' exe='{win[process][name]}' hwnd={win[hwnd]}]"
-      label_no_window: ""
-      label_icon: true
-      label_icon_size: 14
-      max_length: 56
-      max_length_ellipsis: "..."
-      monitor_exclusive: false
   home:
     type: "yasb.home.HomeWidget"
     options:
-      label: "<span>\udb81\udf17</span>"
+      label: "<span>\ue62a</span>"
       menu_list:
       - { title: "User Home", path: "~" }
-      - { title: "Download", path: "D:\\Downloads" }
-      - { title: "Documents", path: "C:\\Users\\amn\\Documents" }
-      - { title: "Pictures", path: "C:\\Users\\amn\\Pictures" }
+      - { title: "Download", path: "C:\\Users\\Jude Joseph\\Downloads" }
+      - { title: "Documents", path: "C:\\Users\\Jude Joseph\\Documents" }
+      - { title: "Pictures", path: "C:\\Users\\Jude Joseph\\Pictures" }
       system_menu: true
       power_menu: true
       blur: true
@@ -91,20 +67,6 @@ widgets:
         system: "System Settings"
         about: "About This PC"
         task_manager: "Task Manager"
-  clock:
-    type: "yasb.clock.ClockWidget"
-    options:
-      label: "\uf017 {%I:%M %p}"
-      label_alt: "\uf017 {%d-%m-%y %I:%M:%S %p}"
-      timezones: []
-    calendar: 
-      blur: True
-      round_corners: True
-      round_corners_type: 'normal'
-      border_color: 'System'
-      alignment: 'center'
-      direction: 'down'
-      distance: 6
   komorebi_workspaces:
     type: "komorebi.workspaces.WorkspaceWidget"
     options:
@@ -160,27 +122,15 @@ widgets:
         on_left: "next_layout"
         on_middle: "toggle_monocle"
         on_right: "prev_layout"
-  traffic:
-    type: "yasb.traffic.TrafficWidget"
-    options:
-      container_padding:
-        left: 5
-        right: 5
-      label: "\ueb01 \ueab4 {download_speed} | \ueab7 {upload_speed}"
-      label_alt: "Download {download_speed} | Upload {upload_speed}"
-      update_interval: 1000
-      callbacks:
-        on_left: "toggle_label"
-        on_right: "exec cmd /c Taskmgr"
   weather:
     type: "yasb.weather.WeatherWidget"
     options:
       label: "<span>{icon}</span> {temp}"
       label_alt: "{location}: Min {min_temp}, Max {max_temp}, Humidity {humidity}"
-      api_key: "f5f6c59de5b84ee4bd7132309251601"
+      api_key: "3bf4cf9a7c3f40d6b31174128242807"
       update_interval: 600
       hide_decimal: true
-      location: "Philippines Sibulan 6201"
+      location: "Philippines, Sibulan, 6201"
       callbacks:
         on_left: "toggle_label"
       icons:
@@ -194,17 +144,94 @@ widgets:
         snowyIcyNight: "\udb81\udd99"
         blizzard: "\udb81\udd99"
         default: "\udb81\udd99"
+  media:
+    type: "yasb.media.MediaWidget"
+    options:
+      label: "{title} - {artist}"
+      label_alt: "{title}"
+      hide_empty: true
+      callbacks:
+        on_left: "toggle_label"
+        on_middle: "do_nothing"
+        on_right: "do_nothing"
+      max_field_size:
+        label: 20
+        label_alt: 30
+      show_thumbnail: false
+      controls_only: false
+      controls_left: false
+      thumbnail_alpha: 80
+      thumbnail_padding: 8
+      thumbnail_corner_radius: 16
+      icons:
+        prev_track: "\udb83\udf28"
+        next_track: "\udb83\udf27"
+        play: "\udb81\udc0a"
+        pause: "\udb80\udfe4"
+  clock:
+    type: "yasb.clock.ClockWidget"
+    options:
+      label: "<span>\uf017</span> {%a %d %b %H:%M }"
+      label_alt: "{%A %d %B %Y %H:%M:%S}"
+      timezones: []
+    calendar: 
+      blur: True
+      round_corners: True
+      round_corners_type: 'normal'
+      border_color: 'System'
+      alignment: 'center'
+      direction: 'down'
+      distance: 6
+  taskbar:
+    type: "yasb.taskbar.TaskbarWidget"
+    options:
+      animation:
+        enabled: true
+      icon_size: 20
+      ignore_apps:
+        processes: []
+        titles: []
+        classes: []
+      container_padding:
+        top: 0
+        left: 5
+        bottom: 0
+        right: 5
+  battery:
+    type: "yasb.battery.BatteryWidget"
+    options:
+      label: "<span>{icon}</span> {percent}%"
+      label_alt: " time: {time_remaining}"
+      charging_options:
+        icon_format: "{charging_icon}"
+  wifi:
+    type: "yasb.wifi.WifiWidget"
+    options:
+      label: "<span> {wifi_icon} </span> {wifi_name}"
+      label_alt: "{wifi_name} {wifi_strength}%"
+      update_interval: 5000
+      callbacks:
+        on_left: "exec explorer ms-availablenetworks:"
+        on_middle: "do_nothing"
+        on_right: "toggle_label"
+      wifi_icons: [
+        "\udb82\udd2e",
+        "\udb82\udd1f",
+        "\udb82\udd22",
+        "\udb82\udd25",
+        "\udb82\udd28" 
+      ]
   volume:
     type: "yasb.volume.VolumeWidget"
     options:
       label: "<span>{icon}</span> {level}"
       label_alt: "{volume}"
       volume_icons:
-        - "\ueee8"
-        - "\uf026"
-        - "\uf027"
-        - "\uf027"
-        - "\uf028"
+        - "\udb81\udf5f "
+        - "\uf026 "
+        - "\uf026 "
+        - "\uf027 "
+        - "\uf028 "
       callbacks:
         on_right: "exec cmd.exe /c start ms-settings:sound"
   power_menu:
@@ -223,27 +250,6 @@ widgets:
         hibernate: ["\uf28e", "Hibernate"]
         sleep: ["\u23fe", "Sleep"]
         cancel: ["", "Cancel"]
-  apps:
-    type: "yasb.applications.ApplicationsWidget"
-    options:
-      container_padding:
-        top: 0
-        left: 8
-        bottom: 0
-        right: 8
-      label: "{data}"
-      app_list:
-        - { icon: "\uf0a2", launch: "notification_center" }
-        - { icon: "\uf422", launch: "launcher" }
-        - { icon: "\ueb03", launch: "cmd /c Taskmgr" }
-        - { icon: "\uf489", launch: "wt" }
-        - { icon: "\udb84\udec7", launch: "C:\\Program Files\\Microsoft Office\\root\\Office16\\OUTLOOK.EXE" }
-        - { icon: "\uf1ff",launch: "C:\\Users\\amn\\AppData\\Local\\Discord\\Update.exe --processStart Discord.exe" }
-        - { icon: "\ue217",launch: "C:\\Users\\amn\\AppData\\Roaming\\Telegram Desktop\\Telegram.exe" }
-        - { icon: "\ued38",launch: "C:\\Users\\amn\\AppData\\Local\\Viber\\Viber.exe" }
-        - { icon: "\uf17e",launch: "C:\\Program Files (x86)\\Microsoft\\Skype for Desktop\\Skype.exe" }
-        - { icon: "\udb80\ude39",launch: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" }
-        - { icon: "\udb82\ude1e",launch: "C:\\Users\\amn\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe" }
   github:
     type: "yasb.github.GithubWidget"
     options:
@@ -254,38 +260,11 @@ widgets:
       only_unread: false
       max_field_size: 54
       update_interval: 60
-  taskbar:
-    type: "yasb.taskbar.TaskbarWidget"
-    options:
-      animation:
-        enabled: true
-      icon_size: 16
-      ignore_apps:
-        processes: []
-        titles: []
-        classes: []
-      container_padding:
-        top: 0
-        left: 0
-        bottom: 0
-        right: 0
-  ai:
-    type: "yasb.custom.CustomWidget"
-    options:
-      label: "<span>\udb81\ude74</span>"
-      label_alt: "\udb81\ude74"
-      class_name: "ai-widget"
-      callbacks:
-        on_left: "exec cmd.exe start \"C:\\Program Files\\WindowsApps\\OpenAI.ChatGPT-Desktop_1.2025.41.0_x64__2p2nqsd0c76g0\\app\\ChatGPT.exe"
-  whkd:
-    type: "yasb.whkd.WhkdWidget"
-    options:
-      label: "<span>\uf11c</span>"
   wallpapers:
     type: "yasb.wallpapers.WallpapersWidget"
     options:
-      label: "<span>\udb83\ude09</span>"
-      image_path: "C:\\Users\\amn\\Pictures\\Wallpapers"
+      label: "<span>\udb80\udee9</span>"
+      image_path: "C:\\Users\\Jude Joseph\\Documents\\Dev\\dotfiles\\assets\\walls"
       change_automatically: false
       update_interval: 60
       gallery:
