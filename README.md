@@ -1,1 +1,1 @@
-# jaysum's dotfiles
+This repo contains my Windows dotfiles.
