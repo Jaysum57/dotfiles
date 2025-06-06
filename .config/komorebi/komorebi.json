@@ -1,0 +1,168 @@
+{
+  "$schema": "https://raw.githubusercontent.com/LGUG2Z/komorebi/v0.1.32/schema.json",
+  "app_specific_configuration_path": "$Env:USERPROFILE/applications.json",
+  "window_hiding_behaviour": "Cloak",
+  "cross_monitor_move_behaviour": "Insert",
+  "default_workspace_padding": 0,
+  "default_container_padding": 4,
+  "floating_window_aspect_ratio": "Standard",
+  "border": true,
+  "border_implementation":"Komorebi",
+  "border_width": 3,
+  "border_offset": -1,
+  "transparency": true,
+  "transparency_alpha": 230,
+  "transparency_ignore_rules": [
+        
+  ],
+  "mouse_follows_focus": false,
+  "border_colours": {
+      "single": "#cba6f7",
+      "stack": "#fab387",
+      "monocle": "#89b4fa",
+      "unfocused": "#10151d00"
+  },
+  "theme": {
+    "palette": "Base16",
+    "name": "Ashes",
+    "unfocused_border": "Base03",
+    "bar_accent": "Base0D"
+  },
+  "animation": {
+    "enabled": true,
+    "duration": 170,
+    "fps": 120,
+    "style": {
+      "movement": "EaseOutBack" 
+    }
+  },
+  "stackbar": {
+    "height": 40,
+    "mode": "OnStack",
+    "tabs": {
+      "width": 300
+    }
+  },
+  "monitors": [
+    { 
+      "workspaces": [
+        {
+          "name": "I",
+          "layout": "BSP"
+        },
+        {
+          "name": "II",
+          "layout": "VerticalStack"
+        },
+        {
+          "name": "III",
+          "layout": "HorizontalStack"
+        }
+      ]
+    }
+  ],
+  "floating_applications": [
+    {
+      "id": "hexchat.exe",
+      "kind": "Exe",
+      "matching_strategy": "Contains"
+    }
+  ],
+  "ignore_rules": [
+    {
+      "id": "RobloxPlayerBeta.exe",
+      "kind": "Exe",
+      "matching_strategy": "Contains"
+    },
+    {
+      "id": "dota2.exe",
+      "kind": "Exe",
+      "matching_strategy": "Contains"
+    },
+    {
+      "id": "Canva.exe",
+      "kind": "Exe",
+      "matching_strategy": "Contains"
+    }, 
+    {
+      "id": "python.exe",
+      "kind": "Exe",
+      "matching_strategy": "Contains"
+    },
+    {
+      "id": "xampp-control.exe",
+      "kind": "Exe",
+      "matching_strategy": "Contains"
+    },
+    {
+      "id": "WinRAR.exe",
+      "kind": "Exe",
+      "matching_strategy": "Contains"
+    },
+    {
+      "id": "ChatGPT.exe",
+      "kind": "Exe",
+      "matching_strategy": "Contains"
+    },
+    {
+      "id": "Discord.exe",
+      "kind": "Exe",
+      "matching_strategy": "Contains"
+    },
+    {
+      "id": "Spotify.exe",
+      "kind": "Exe",
+      "matching_strategy": "Contains"
+    },
+    {
+      "id": "grass.exe",
+      "kind": "Exe",
+      "matching_strategy": "Equals"
+    },
+    {
+      "id": "ShareX.exe",
+      "kind": "Exe",
+      "matching_strategy": "Contains"
+    },
+    {
+      "id": "ui32.exe",
+      "kind": "Exe",
+      "matching_strategy": "Contains"      
+    },
+    {
+      "id": "yasb.exe",
+      "kind": "Exe",
+      "matching_strategy": "Contains"
+    },
+    {
+      "id": "sioyek.exe",
+      "kind": "Exe",
+      "matching_strategy": "Contains"
+    },
+    {
+      "id": "explorer.exe",
+      "kind": "Exe",
+      "matching_strategy": "Contains"
+    },
+    {
+      "id": "Everything.exe",
+      "kind": "Exe",
+      "matching_strategy": "Contains"
+    },
+    {
+      "id": "PhoneExperienceHost.exe",
+      "kind": "Exe",
+      "matching_strategy": "Contains"
+    },
+    {
+      "id": "QuickLook.exe",
+      "kind": "Exe",
+      "matching_strategy": "Contains"
+    }, 
+    {
+      "id": "parsecd.exe",
+      "kind": "Exe",
+      "matching_strategy": "Contains"
+    }
+  ]
+}

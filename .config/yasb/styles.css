@@ -1,3 +1,4 @@
+/*VARIABLES AND SOME DEFAULT SETTINGS*/
 :root {
     --rosewater: #f5e0dc;
     --flamingo: #f2cdcd;
@@ -6,6 +7,8 @@
     --red: #f38ba8;
     --maroon: #eba0ac;
     --peach: #fab387;
+    --peachedit: #ecd093;
+    --peachedit2: #e9bb77;
     --yellow: #f9e2af;
     --green: #a6e3a1;
     --teal: #94e2d5;
@@ -21,207 +24,143 @@
     --overlay0: #6c7086;
     --surface2: #585b70;
     --surface1: #45475a;
-    --surface0: #282936;
-    --base: rgb(30, 30, 46);
+    --surface1: #282936;
+    --base: #1e1e2e;
+    --winbutton: #565178;
+    --icon: #b5c7d7;
+    --basetransparent: rgba(30, 30, 46, 0.6);
     --mantle: rgba(24, 24, 37, 1);
-    --crust: rgba(17, 17, 27, 0.5);
+    --crust: rgba(17, 17, 27, 1);
 }
-
-* {
-	font-size: 15px;
-	color: var(--text);
-	font-weight: 600;
-	font-family: "JetBrainsMono NFP";
-	margin: 0;
-	padding: 0;
+*{
+    font-size: 12px;
+    color: var(--text);
+    font-weight: 600;
+    font-family: "JetBrainsMono NFP";
+    margin: 0;
+    padding: 0;
 }
+/*GENERAL CONFIGRATIONS*/
 .yasb-bar {
-	padding: 5px 15px;
-	margin: 0; 
-    background-color: #11111b;
+	padding: 0;
+	margin: 0;
+    background-color: var(--base);
 }
 .widget {
-	padding: 0 12px;
-	margin: 0;
+    padding: 0 4px;
+    margin: 0 4px;
+    border-radius: 12px;
+    border: 1px solid rgba(128, 128, 128, 0);
 }
-.icon {
-	font-size: 16px;
+.widget .icon {
+    font-size: 18px;
 }
 .widget .label {
-	padding: 0px 10px 0 5px;
-}
-
-/* Home */
-
-.home-widget {
-    background-color: #24273a;
-    border-radius: 20px;
-    padding: 0 12px;
-    margin: 0 10px 0 0;
-}
-.home-widget .icon {
-    color: var(--lavender);
-    padding: 0 5px 0 5px;
-}
-.home-widget .icon:hover {
     color: var(--text);
 }
+/*WIDGET*/
+.home-widget {
+    padding-bottom: 1px;
+}
+/*HOME WIDGET DROPDOWN*/
 .home-menu {
     background-color: var(--mantle);
+    padding: 0;
+    margin-left: 0px;
 }
 .home-menu .menu-item {
-    padding: 10px 48px 10px 16px;
-    font-size: 14px;
-    font-family: 'JetBrains Mono', Tahoma, Geneva, Verdana, sans-serif;
-    color: var(--text); 
+    padding: 6px 48px 7px 16px;
+    font-size: 12px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: 600;
 }
 .home-menu .menu-item:hover {
-    background-color: #24273a;
+    background-color:rgba(128, 130, 158, 0.15);
     color: #fff;
 }
 .home-menu .separator {
     max-height: 1px;
-    background-color: var(--surface1);
+    background-color:rgba(128, 130, 158, 0.3);
 }
-
-/* GlazeWM */
-
-/* .komorebi-workspaces {
-    background-color: #24273a;
-    border-radius: 20px;
-}
-.komorebi-workspaces .ws-btn {
-    background-color: transparent;
-    border: none;
-    padding: 0px 5px 0px 5px;
-}
-.komorebi-workspaces .ws-btn.active {
-    color: var(--mauve);
-}
-.komorebi-workspaces .ws-btn.populated,
-.komorebi-workspaces .ws-btn.empty {
-    color: var(--overlay1);
-} */
-
-
-.komorebi-active-layout {
-	padding: 0 4px 0 0;
-}
-.komorebi-active-layout .label {
-	font-weight: 600;
-	padding: 2px 0 0 0;
-}
-.apps-widget .widget-container,
-.komorebi-workspaces .widget-container,
-.komorebi-active-layout .widget-container{
-	background-color: #24273a;
-	margin: 0px 0 0px 0;
-	border-radius: 20px;
-    border: 0px solid var(--blue);
-}
-.komorebi-workspaces .widget-container {
-    border-top-left-radius: 20px;
-	border-bottom-left-radius: 20px;
-    margin-left: 4px;
-}
+/*KOMOREBI WORKSPACES WIDGET*/
 .komorebi-workspaces {
-	border-top-right-radius: 14px;
-	border-bottom-right-radius: 14px;
-	padding: 0 4px 0 0;
-}
-.komorebi-workspaces .offline-status {
-    color: var(--lavender);
-    font-size: 12px;
-    padding: 0 0 0 4px;
-    font-weight:600;
-}
-.komorebi-workspaces .ws-btn {
-    border: none;
-    background-color:transparent;
-	margin:0;
-    font-size: 12px;
-	color:  var(--lavender);
-    height: 28px;
-    width: 18px;
-}
-.komorebi-workspaces .ws-btn:hover {
-    color: var(--subtext1);
-}
-.komorebi-workspaces .ws-btn.populated {
-    color:transparent;
-    width: 10px;
-    height: 10px;
-    background-color: var(--blue);
-    border-radius: 5px;
-    margin: 0 4px;
-    font-size: 1px;
-}
-.komorebi-workspaces .ws-btn.active {
-	color: transparent;
-    background-color: var(--lavender);
-    width: 36px;
-    height: 10px;
-    margin: 0 4px;
-    border-radius: 5px; 
-}
-
-
-/* Media */
-
-.media-widget {
-    background-color: #24273a;
-    border-radius: 20px;
-    margin: 0 0 0 10px;
-}
-.media-widget .btn.play {
-    padding: 0 5px 0 0;
-}
-.media-widget .btn.prev {
-    padding: 0 0 0 3px;
-}
-.media-widget .btn.play,
-.media-widget .btn.prev,
-.media-widget .btn.next {
-    font-size: 22px;
-    color: var(--subtext0);
-}
-.media-widget .btn.play:hover,
-.media-widget .btn.prev:hover,
-.media-widget .btn.next:hover {
-    color: var(--text);
-}
-
-/* Clock */
-
-.clock-widget .widget-container {
-    background-color: #24273a;
-    border-radius: 20px;
-}
-.clock-widget .widget-container .icon {
-    color: var(--lavender);
-    margin: 0 5px 0 15px;
-}
-
-/* Calendar */
-
-.calendar {
-    background-color: var(--mantle);
-    padding: 10px;
-    border: 1px solid var(--surface0);
+    margin-left: -6px;
+    margin-right: -6px;
+    margin-top: 4px;
+    margin-bottom: 4px;
     border-radius: 10px;
 }
+.komorebi-workspaces .offline-status {
+    color: #627199;
+    font-size: 12px;
+    padding: 0 4px;
+    font-weight: 600;
+}
+.komorebi-workspaces .ws-btn {
+    border: none;
+    background-color: var(--overlay2);
+    margin: 0px 4px;
+    padding: 0;
+    color: rgba(0, 0, 0, 0);
+    border-radius: 5px;
+    height: 10px;
+    width: 10px;
+}
+.komorebi-workspaces .ws-btn.populated {
+    background-color: var(--yellow);
+}
+.komorebi-workspaces .ws-btn.active {
+    color: rgba(149, 177, 255, 0);
+    background-color: var(--blue);
+    width: 36px;
+    height: 10px;
+    border-radius: 4px;
+}
+/*WEATHER WIDGET*/
+.weather-widget {
+    padding: 0;
+    padding-left: -5
+}
+.weather-widget .icon {
+    color: var(--yellow);
+    padding: 6px;
+}
+.weather-widget .label {
+    font-size: 14px;
+    font-family: Bahnschrift;
+}
+/*ACTIVE WINDOW WIDGET*/
+.active-window-widget .label {
+    font-size: 14px;
+    font-family: Bahnschrift;
+}
+.active-window-widget .icon {
+    padding-right: 6px;
+    border: none;
+}
+/*CLOCK - CALENDAR WIDGET*/
+.clock-widget .label {
+    font-size: 14px;
+    /* font-family: Bahnschrift; */
+    /* font-family: "JetBrainsMono NFP"; */
+    /* font-weight: bold; */
+}
+/*CLOCK - CALENDAR WIDGET DROPDOWN*/
+.calendar {
+    background-color: var(--mantle);
+}
+.calendar .calendar-table,
 .calendar .calendar-table::item {
-    background-color: #24273a;
-    color: var(--overlay1);
-    font-family: 'JetBrains Mono', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: rgba(17, 17, 27, 0);
+    color: rgba(162, 177, 196, 0.85);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
     border: none;
     outline: none;  
 }
 .calendar .calendar-table::item:selected {
-    color: var(--text);
+    color: rgb(255, 255, 255);
 }
 .calendar .day-label {
     margin-top: 20px;
@@ -229,9 +168,9 @@
 .calendar .day-label,
 .calendar .month-label,
 .calendar .date-label {
-    font-family: 'JetBrains Mono', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 16px;
-    color: var(--text);
+    color: #fff;
     font-weight: 700;
     min-width: 180px;
     max-width: 180px;
@@ -242,182 +181,116 @@
 .calendar .date-label {
     font-size: 88px;
     font-weight: 900;
-    color: var(--text);
+    color: rgb(255, 255, 255);
     margin-top: -20px;
 }
-
-/* Taskbar (currently active apps) */
- 
-/*
-.taskbar-widget{
-    background-color: #24273a;
-    border-radius: 20px;
-    padding: 0 5px;
+/*DISK WIDGET*/
+.disk-widget {
+    padding: 0;
 }
-*/ 
-.taskbar-widget .app-icon{
-    padding: 0 0 0 10px;
+/*DISK DROPDOWN*/
+.disk-group {
+    background-color: var(--mantle);    
 }
-
-/* Wifi */
-
-.wifi-widget .widget-container {
-    background-color: #24273a;
-    border-radius: 20px;
+.disk-group-row {
+    min-width: 220px;
+    max-width: 220px;
+    max-height: 40px;
+    margin: 0;
+    padding: 0;
+    border-radius: 6px;
+    border: 1px solid rgba(128, 128, 128, 0);
 }
-.wifi-widget .widget-container .icon {
-    font-size: 14px;
-    color: var(--yellow);
-    padding: 0 5px 0 10px;
+.disk-group-row:hover {
+    background-color:rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
-.wifi-widget .widget-container .label {
-    padding: 0 10px 0 0;
+.disk-group-label-bar{
+    max-height: 8px;
+    border:0px solid rgba(128, 128, 128, 0);
+    background-color: rgba(137, 180, 250, 0.3);
+    border-radius: 4px;
 }
-
-/* Volume */
-
+.disk-group-label-bar::chunk{
+    background-color: rgb(137, 180, 250);
+    border-radius: 4px;
+}
+.disk-group-label {
+    font-size: 13px;
+}
+.disk-group-label-size {
+    font-size: 12px;
+    color: rgba(205, 214, 244, 0.5);
+}
+/*AUDIO WIDGET*/
 .volume-widget {
-    background-color: #24273a;
-    border-radius: 20px;
-    padding: 0 5px;
-}
-.volume-widget .label {
-    padding: 0 5px 0 0;
+    margin-left: 0;
+    padding: 0;
 }
 .volume-widget .icon {
-    font-size: 18px;
-	color: var(--peach);
-    padding: 0 0 0 5px;
+    padding: 0 6px;
+    color: var(--blue);
 }
-.volume-slider {
-    border: none;
+.volume-widget .label {
+    font-size: 14px;
+    font-family: Bahnschrift;
 }
-.volume-slider::groove {}
-.volume-slider::handle{} 
-.audio-menu {
-    background-color:rgba(17, 17, 27, 0.4); 
-}
+/*AUDIO DROPDOWN*/
 .audio-menu {
     background-color: var(--mantle);
 }
-
-/* Battery */
-
-.battery-widget .widget-container {
-    background-color: #24273a;
-    border-radius: 20px;
-}
-.battery-widget .widget-container .icon.status-low {
-    color: var(--red);
-}
-.battery-widget .widget-container .icon.status-medium {
-    color: var(--yellow);
-}
-.battery-widget .widget-container .icon.status-high,
-.battery-widget .widget-container .icon.status-full,
-.battery-widget .widget-container .icon.status-charging {
-    color: var(--green);
-    padding: 0 5px 0 10px;
-}
-
-/* Power menu */
-
-.power-menu-widget {
-    background-color: #24273a;
-    border-radius: 20px;
-}
-.power-menu-widget .label {
-	color: var(--red);
-	font-size: 14px;
-    padding: 0 5px 0 5px;
-}
-.power-menu-popup {
-	background-color: transparent;
-}
-.power-menu-popup .button {
-	padding: 0;
-	width: 180px;
-	height: 230px;
-	border-radius: 8px;
-	background-color: var(--base);
-	color:var(--text);
-	border-left: 4px solid rgba(58, 59, 83, 0);
-    border-right: 4px solid rgba(58, 59, 83, 0);
-    border-top: 8px solid rgba(58, 59, 83, 0);
-    border-bottom: 8px solid rgba(58, 59, 83, 0);
-	margin: 0px;
-}
-.power-menu-popup .button.hover {
-	background-color:var(--surface0);
-	border-left: 4px solid var(--surface0);
-    border-right: 4px solid var(--surface0);
-    border-top: 8px solid var(--surface0);
-    border-bottom: 8px solid var(--surface0);
-}
-.power-menu-popup .button .label {
-	margin-bottom: 8px;
-	font-size: 16px;
-	font-weight: 500;
-	color: var(--subtext1);
-}
-.power-menu-popup .button .icon {
-	font-size: 64px;
-	padding-top: 32px;
-	color: var(--subtext1);
-}
-.power-menu-popup .button.cancel .icon {
-    padding: 0;
-    margin: 0;
-}
-.power-menu-popup .button.cancel .label {
-	color: var(--red);
-    margin: 0;
-}
-.power-menu-popup .button.cancel {
-    height: 32px;
+.audio-container .device {
+    font-family: Bahnschrift;
+    background-color: transparent;
+    border: none;
+    padding:6px 8px 6px 4px;
+    margin: 2px 0;
+    font-size: 14px;
     border-radius: 4px;
 }
-.uptime {
-	font-size: 14px;
-	margin-bottom: 10px;
-	color: var(--subtext0);
+.audio-container .device.selected {
+    background-color: rgba(255, 255, 255, 0.085);
+}
+.audio-container .device:hover {
+    background-color: rgba(255, 255, 255, 0.06);
 }
 
-/* Weather */
-/* .weather-widget,
-.weather-widget .icon {
-	font-size: 18px;
-	margin: 0 2px 1px 0;
-    color: var(--yellow);
-} */
-
-.weather-widget {
+/*MEDIA WIDGET*/
+.media-widget {
+	padding: 0;
+    margin: 0;
+}
+.media-widget .label {
+    font-family: Bahnschrift;
+    font-size: 14px;
+    padding: 0 0px;
+    padding-left: 8px;
+}
+.media-widget .btn {
+    color: var(--blue);
     padding: 0 10px;
-    background-color: #24273a;
-    border-radius: 20px;
-    margin: 0 10px 0 10px;
+	padding-right: 0px;
+	margin: 4px 0;
+	font-family: Segoe Fluent Icons;
 }
-.weather-widget .icon {
-	font-size: 18px;
-	margin: 0 2px 1px 0;
-    color: var(--yellow);
+.media-widget .icon{
+    padding: 0 6px;
 }
-
-/* Wallpaper caraousel */
-
+/*WALLPAPERS WIDGET*/
 .wallpapers-widget {
-    padding: 0 5px;
+    padding: 0;
 }
-
+/*WALLPAPERS GALLERY*/
 .wallpapers-gallery-window {
-    border-radius: 20px;
-    background-color: rgba(85, 42, 240, 0.01);
+    background-color: var(--mantle);
     border: 0;
     margin: 0;
 }
 .wallpapers-gallery-buttons {
+    font-size: 12px;
+    font-family: 'Bahnschrift', Tahoma, Geneva, Verdana, sans-serif;
     background-color:rgba(255, 255, 255, 0);
-    color:var(--text);
+    color: white;
     border: none;
     font-size: 14px;
     padding: 8px 0;
@@ -433,17 +306,73 @@
     border-radius: 10px;
 }
 .wallpapers-gallery-image:hover {
-    border: 4px solid var(--sapphire);
+    border: 4px solid rgb(66, 68, 83);
 }
 .wallpapers-gallery-image.focused {
-    border: 4px solid var(--sapphire);
+    border: 4px solid #89b4fa;
 }
-
-
-/* Github */
-
-/* 
-.github-menu {
+/*POWER WIDGET*/
+.power-menu-widget {
+    padding-left: 0;
+}
+.power-menu-widget .label {
+	color: var(--red);
+    font-size: 16px;
+}
+/*POWER MENU POPUP*/
+.uptime {
+	font-size: 14px;
+	margin-bottom: 10px;
+	color: rgba(191, 202, 219, 0.726);
+	font-weight: 600;
+	font-family: "Bahnschrift", Tahoma, Geneva, Verdana, sans-serif;
+}
+.power-menu-popup .button {
+	padding: 0;
+	width: 160px;
+	height: 240px;
+	border-radius: 4px;
+	background-color: rgba(41, 42, 58, 0.75);
+	font-family: "Bahnscrift", Tahoma, Geneva, Verdana, sans-serif;
+	color: white;
+	border: 4px solid rgba(255, 255, 255, 0);
+ 
+}
+.power-menu-popup .button.hover {
+	background-color: rgb(55, 56, 75);
+	border: 4px solid rgb(55, 56, 75);
+}
+.power-menu-popup .button .label {
+	margin-bottom: 8px;
+	font-size: 16px;
+	font-weight: 600;
+	color: rgba(255, 255, 255, 0.6);
+	font-family: "Bahnschrift", Tahoma, Geneva, Verdana, sans-serif;
+}
+.power-menu-popup .button .icon {
+	font-size: 64px;
+	padding-top: 54px;
+	color: rgba(255, 255, 255, 0.25);
+}
+.power-menu-popup .button.cancel .icon {
+	color: rgba(243, 139, 168, 0.55);
+}
+.power-menu-popup .button.cancel .label {
+	color: rgba(243, 139, 168, 0.95);
+}
+.cava-widget {
+    padding: 0;
+    margin-right: 0;
+}
+/*GITHUB WIDGET*/
+.github-widget {
+    padding: 0;
+}
+.github-widget .icon {
+    font-size: 16px;
+}
+/*GITHUB DROPDOWN*/
+.github-menu    {
     background-color:  rgba(17, 17, 27, 0.2);
     max-height: 500px;
     min-height: 500px;
@@ -453,7 +382,7 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     font-size: 15px;
     font-weight: 400;
-    font-family: 'JetBrains Mono', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     padding: 8px;
     color: white;
     background-color: rgba(17, 17, 27, 0.75);
@@ -462,7 +391,7 @@
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     font-size: 12px;
     padding: 4px 8px 6px 8px;
-    font-family: 'JetBrains Mono', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #9399b2;
     background-color: rgba(17, 17, 27, 0.75);
 }
@@ -481,7 +410,7 @@
 .github-menu .contents .item .title,
 .github-menu .contents .item .description {
     color: #9399b2;
-    font-family: JetBrains Mono;
+    font-family: Segoe UI;
 }
 .github-menu .contents .item .title {
     font-size: 14px;
@@ -505,15 +434,3 @@
 .github-menu .contents .item.new .icon {
     color: #3fb950;
 }
-.github-widget {
-    padding: 0 5px;
-}
-.github-widget .icon {
-    font-size: 16px;
-    margin: 0 5px;
-	color: var(--text)
-}
-.github-widget .icon.new-notification {
-    color: var(--red);
-}
-*/
