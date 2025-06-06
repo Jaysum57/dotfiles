@@ -58,10 +58,10 @@ widgets:
       label: "<span>\ue62a</span>"
       menu_list:
       - { title: "Home", path: "~" }
-      - { title: "Downloads", path: "C:\\Users\\Jude Joseph\\Downloads"}
-      - { title: "Documents", path: "C:\\Users\\Jude Joseph\\Documents"}
-      - { title: "Pictures", path: "C:\\Users\\Jude Joseph\\Pictures"}
-      - { title: "Videos", path: "C:\\Users\\Jude Joseph\\Videos"}
+      - { title: "Downloads", path: "$env:USERPROFILE/Downloads"}
+      - { title: "Documents", path: "$env:USERPROFILE/Documents"}
+      - { title: "Pictures", path: "$env:USERPROFILE/Pictures"}
+      - { title: "Videos", path: "$env:USERPROFILE/Videos"}
       system_menu: true
       power_menu: false
       blur: true
@@ -196,7 +196,7 @@ widgets:
     type: "yasb.wallpapers.WallpapersWidget"
     options:
       label: "<span>\udb83\ude09</span>"
-      image_path: "C:\\Users\\Jude Joseph\\Documents\\Dev\\dotfiles\\assets\\walls"
+      image_path: "$env:USERPROFILE/.dotfiles/assets/walls"
       change_automatically: false
       update_interval: 60
       gallery:
