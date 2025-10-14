@@ -1,0 +1,179 @@
+/**
+ * @name system24 (nord)
+ * @description a tui-style discord theme. based on nord theme (https://www.nordtheme.com).
+ * @author refact0r
+ * @version 2.0.0
+ * @invite nz87hXyvcy
+ * @website https://github.com/refact0r/system24
+ * @source https://github.com/refact0r/system24/blob/master/theme/system24-nord.theme.css
+ * @authorId 508863359777505290
+ * @authorLink https://www.refact0r.dev
+*/
+
+/* import theme modules */
+@import url('https://refact0r.github.io/system24/build/system24.css');
+
+body {
+    /* font, change to '' for default discord font */
+    --font: 'DM Mono'; /* change to '' for default discord font */
+    --code-font: 'DM Mono'; /* change to '' for default discord font */
+    font-weight: 300; /* text font weight. 300 is light, 400 is normal. DOES NOT AFFECT BOLD TEXT */
+    letter-spacing: -0.05ch; /* decreases letter spacing for better readability. recommended on monospace fonts.*/
+
+    /* sizes */
+    --gap: 12px; /* spacing between panels */
+    --divider-thickness: 4px; /* thickness of unread messages divider and highlighted message borders */
+    --border-thickness: 2px; /* thickness of borders around main panels. DOES NOT AFFECT OTHER BORDERS */
+    --border-hover-transition: 0.2s ease; /* transition for borders when hovered */
+
+    /* animation/transition options */
+    --animations: off; /* off: disable animations/transitions, on: enable animations/transitions */
+    --list-item-transition: 0.2s ease; /* transition for list items */
+    --dms-icon-svg-transition: 0.4s ease; /* transition for the dms icon */
+
+    /* top bar options */
+    --top-bar-height: var(--gap); /* height of the top bar (discord default is 36px, old discord style is 24px, var(--gap) recommended if button position is set to titlebar) */
+    --top-bar-button-position: titlebar; /* off: default position, hide: hide buttons completely, serverlist: move inbox button to server list, titlebar: move inbox button to channel titlebar (will hide title) */
+    --top-bar-title-position: off; /* off: default centered position, hide: hide title completely, left: left align title (like old discord) */
+    --subtle-top-bar-title: off; /* off: default, on: hide the icon and use subtle text color (like old discord) */
+
+    /* window controls */
+    --custom-window-controls: off; /* off: default window controls, on: custom window controls */
+    --window-control-size: 14px; /* size of custom window controls */
+
+    /* dms button options */
+    --custom-dms-icon: custom; /* off: use default discord icon, hide: remove icon entirely, custom: use custom icon */
+    --dms-icon-svg-url: url('https://Jaysum57.github.io/dotfiles/assets/discord/midnight theme/mclaren-svgrepo-com-white.svg'); /* icon svg url. MUST BE A SVG. */
+    --dms-icon-svg-size: 100%; /* size of the svg (css mask-size property) */
+    --dms-icon-color-before: var(--icon-secondary); /* normal icon color */
+    --dms-icon-color-after: var(--white); /* icon color when button is hovered/selected */
+    --custom-dms-background: off; /* off to disable, image to use a background image (must set url variable below), color to use a custom color/gradient */
+    --dms-background-image-url: url(''); /* url of the background image */
+    --dms-background-image-size: cover; /* size of the background image (css background-size property) */
+    --dms-background-color: linear-gradient(70deg, var(--blue-2), var(--purple-2), var(--red-2)); /* fixed color/gradient (css background property) */
+
+    /* background image options */
+    --background-image: on; /* off: no background image, on: enable background image (must set url variable below) */
+    --background-image-url: url('https://www.hdcarwallpapers.com/download/mclaren_mcl38_formula_1_2024_4k-1920x1080.jpg'); /* url of the background image */
+   
+    /* transparency/blur options */
+    /* NOTE: TO USE TRANSPARENCY/BLUR, YOU MUST HAVE TRANSPARENT BG COLORS. FOR EXAMPLE: --bg-4: hsla(220, 15%, 10%, 0.7); */
+    --transparency-tweaks: on; /* off: no changes, on: remove some elements for better transparency */
+    --remove-bg-layer: off; /* off: no changes, on: remove the base --bg-3 layer for use with window transparency (WILL OVERRIDE BACKGROUND IMAGE) */
+    --panel-blur: on; /* off: no changes, on: blur the background of panels */
+    --blur-amount: 11px; /* amount of blur */
+    --bg-floating: var(--bg-3); /* set this to a more opaque color if floating panels look too transparent. only applies if panel blur is on  */
+
+    /* other options */
+    --small-user-panel: off; /* off: default user panel, on: smaller user panel like in old discord */
+
+    /* unrounding options */
+    --unrounding: off; /* off: default, on: remove rounded corners from panels */
+
+    /* styling options */
+    --custom-spotify-bar: on; /* off: default, on: custom text-like spotify progress bar */
+    --ascii-titles: off; /* off: default, on: use ascii font for titles at the start of a channel */
+    --ascii-loader: system24; /* off: default, system24: use system24 ascii loader, cats: use cats loader */
+
+    /* panel labels */
+    --panel-labels: off; /* off: default, on: add labels to panels */
+    --label-color: var(--text-muted); /* color of labels */
+    --label-font-weight: 500; /* font weight of labels */
+}
+
+/* color options */
+:root {
+    --colors: on; /* off: discord default colors, on: midnight custom colors */
+
+/*
+ * McLaren F1 Inspired Color Scheme
+ * Primary colors: Papaya Orange, Anthracite/Dark Grey/Black, hints of Blue.
+*/
+
+/* text and foreground colors */
+    --text-0: var(--bg-3); /* text on colored elements (will be dark on orange) */
+    --text-1: #ffffff; /* other normally white text - pure white for contrast */
+    --text-2: #f0f0f0; /* headings and important text - bright white/light grey */
+    --text-3: #c9c9c9; /* normal text - lighter grey for readability */
+    --text-4: #8a8a8a; /* icon buttons and channels - medium grey */
+    --text-5: #5e5e5e; /* muted channels/chats and timestamps - dark grey */
+
+    /* background and dark colors (Deep Desaturated Orange/Brown with 0.95 opacity) */
+    --bg-1: rgba(46, 29, 15, 0.7); /* dark buttons when clicked - very dark orange */
+    --bg-2: rgba(56, 36, 19, 0.7); /* dark buttons - slightly lighter */
+    --bg-3: rgba(66, 45, 26, 1); /* spacing, secondary elements - medium dark orange */
+    --bg-4: rgba(36, 23, 10, 0.7); /* main background color - REALLY DARK orange/brown */
+    --hover: hsla(20, 100%, 50%, 0.1); /* channels and buttons when hovered (Papaya subtle) */
+    --active: hsla(20, 100%, 50%, 0.2); /* channels and buttons when clicked or selected (Papaya less subtle) */
+    --active-2: hsla(20, 100%, 50%, 0.3); /* extra state for transparent buttons */
+    --message-hover: hsla(0, 0%, 100%, 0.05); /* messages when hovered - slight white glow */
+
+    /* accent colors (Papaya Orange) */
+    --accent-1: var(--orange-2); /* links and other accent text */
+    --accent-2: var(--orange-2); /* small accent elements */
+    --accent-3: var(--orange-3); /* accent buttons */
+    --accent-4: var(--orange-4); /* accent buttons when hovered */
+    --accent-5: var(--orange-5); /* accent buttons when clicked */
+    --accent-new: var(--orange-2); /* stuff that's normally red like mute/deafen buttons (Papaya for prominence) */
+    --mention: linear-gradient(to right, color-mix(in hsl, var(--accent-2), transparent 90%) 40%, transparent); /* background of messages that mention you */
+    --mention-hover: linear-gradient(to right, color-mix(in hsl, var(--accent-2), transparent 95%) 40%, transparent); /* background of messages that mention you when hovered */
+    --reply: linear-gradient(to right, color-mix(in hsl, var(--text-3), transparent 90%) 40%, transparent); /* background of messages that reply to you */
+    --reply-hover: linear-gradient(to right, color-mix(in hsl, var(--text-3), transparent 95%) 40%, transparent); /* background of messages that reply to you when hovered */
+
+    /* status indicator colors - kept distinct, but adjusted for the theme */
+    --online: var(--green-2); /* Online: standard green */
+    --dnd: var(--red-2); /* Do Not Disturb: standard red */
+    --idle: var(--yellow-2); /* Idle: A yellow-ish Papaya tone */
+    --streaming: var(--blue-2); /* Streaming: Using a brighter blue as a secondary accent color */
+    --offline: var(--text-4); /* Offline: Muted grey */
+
+    /* border colors (subtle dark borders) */
+    --border-light: hsla(0, 0%, 100%, 0.03); /* general light border color */
+    --border: hsla(0, 0%, 100%, 0.08); /* general normal border color */
+    --border-hover: var(--accent-2); /* border color of panels when hovered */
+    --button-border: hsla(0, 0%, 100%, 0.15); /* neutral border color of buttons */
+
+    /* base colors - updated for McLaren palette */
+    /* Reds (for DND/Error) */
+    --red-1: hsl(0, 60%, 55%);
+    --red-2: #cc3333;
+    --red-3: #cc3333;
+    --red-4: hsl(0, 60%, 45%);
+    --red-5: hsl(0, 60%, 40%);
+
+    /* Greens (for Online/Success) */
+    --green-1: hsl(120, 40%, 55%);
+    --green-2: #4caf50;
+    --green-3: #4caf50;
+    --green-4: hsl(120, 40%, 45%);
+    --green-5: hsl(120, 40%, 40%);
+
+    /* Oranges (McLaren Papaya) */
+    --orange-1: hsl(20, 100%, 75%);
+    --orange-2: #ff8700; /* Primary Papaya Orange */
+    --orange-3: #ff8700;
+    --orange-4: hsl(20, 100%, 45%);
+    --orange-5: hsl(20, 100%, 40%);
+
+    /* Blues (Secondary Accent/Streaming) */
+    --blue-1: hsl(200, 70%, 65%);
+    --blue-2: #00bfff; /* Bright Light Blue */
+    --blue-3: #00bfff;
+    --blue-4: hsl(200, 70%, 55%);
+    --blue-5: hsl(200, 70%, 50%);
+
+    /* Yellows (for Idle) */
+    --yellow-1: hsl(45, 100%, 70%);
+    --yellow-2: #ffc107; /* A bright, distinct yellow */
+    --yellow-3: #ffc107;
+    --yellow-4: hsl(45, 100%, 60%);
+    --yellow-5: hsl(45, 100%, 55%);
+
+    /* Purples (Generic secondary) - Adjusted to a neutral chrome/silver tone */
+    --purple-1: hsl(220, 10%, 70%);
+    --purple-2: #b0b0b0; /* Chrome/Silver */
+    --purple-3: #b0b0b0;
+    --purple-4: hsl(220, 10%, 60%);
+    --purple-5: hsl(220, 10%, 55%);
+
+}
