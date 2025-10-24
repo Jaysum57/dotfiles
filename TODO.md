@@ -3,13 +3,20 @@
 - make bat/shell script for installing winget packages
 - make bat/shell script for choosing themes 
 - move themes in a dedicated 'themes' folder
-    - flow:
-    - Read folder name in themes folder
-    - print all themes
-    - get feedback from user
-    - copy theme folder files
-    - replace files in .config with copied files
-        - yasb/config.yaml
+    - **flow 1**:
+      - Read folder name in themes folder
+      - print all themes
+      - get feedback from user
+      - *copy theme folder files*
+      - *replace files in .config with copied files*
+          - directory: `.config/yasb/config.yaml`
+    - **flow 2**:
+      - Read folder name in themes folder
+      - print all themes
+      - get feedback from user
+      - *Set yasb home directory instead*
+        - https://github.com/amnweb/yasb/wiki/FAQ#q-how-to-set-custom-configuration-directory 
+
 
 
 # Download Applications List
