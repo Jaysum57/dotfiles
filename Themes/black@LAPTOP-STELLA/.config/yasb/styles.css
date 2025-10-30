@@ -1,6 +1,7 @@
-/* --- Root Variables (Colors) --- */
+/* ============================================
+   ROOT VARIABLES (COLORS)
+   ============================================ */
 :root {
-    /* --- Mica Inspired Color Variables --- */
     --background-color: rgba(0, 0, 0, 0.7);
     --foreground-color: rgb(237, 238, 240);
     --accent-color: #fa1515;
@@ -12,7 +13,9 @@
     --inactive-color: rgba(63, 69, 75, 0.5);
 }
 
-/* --- Base Styles --- */
+/* ============================================
+   BASE STYLES
+   ============================================ */
 * {
     font-size: 14px;
     color: var(--foreground-color);
@@ -23,21 +26,11 @@
     box-sizing: border-box;
 }
 
-/* --- Yasb Bar Itself --- */
+/* --- Yasb Bar --- */
 .yasb-bar {
     background-color: var(--background-color);
-    border-radius: 8px;
+    /* border-radius: 8px; */
     border: 1px solid var(--border-color);
-}
-
-/* --- Individual Widgets --- */
-.widget {
-    padding: 0 12px;
-    margin: 0;
-}
-
-.container-right .widget .icon:hover {
-    color: var(--icon-hover);
 }
 
 /* --- Icons --- */
@@ -46,29 +39,37 @@
     color: var(--icon-color);
 }
 
-/* --- Widget Labels --- */
-.widget .label {
+/* ============================================
+   WIDGETS - GENERAL
+   ============================================ */
+
+/* --- Widget Base Styles --- */
+.widget {
+    padding: 0 9px;
+    margin: 0;
+}
+
+/* .widget .label {
     padding: 0px 2px;
+} */
+
+.container-right .widget .icon:hover {
+    color: var(--icon-hover);
 }
 
-/* --- Apps Widget Specific --- */
-.apps-widget {
-    padding: 0 4p 0 2px;
-}
+/* --- Common Widget Padding --- */
+/* .weather-widget,
+.battery-widget,
+.brightness-widget,
+.wifi-widget {
+    padding: 0 -5px;
+} */
 
-.apps-widget .widget-container .label {
-    font-size: 12px;
-}
 
-/* --- Komorebi Active Layout --- */
-.komorebi-active-layout {
-    padding: 0 4px;
-}
 
-.komorebi-active-layout .label {
-    font-weight: 600;
-    padding-bottom: 2px;
-}
+/* ============================================
+   WIDGETS - WORKSPACE & LAYOUT CONTAINERS
+   ============================================ */
 
 /* --- Workspace and Layout Containers --- */
 .apps-widget .widget-container,
@@ -82,13 +83,92 @@
     border: 1px solid var(--border-color);
 }
 
-/* --- Komorebi & GlazeWM Workspaces --- */
-.komorebi-workspaces,
+/* ============================================
+   WIDGETS - APPS
+   ============================================ */
+
+/* --- Apps Widget --- */
+.apps-widget {
+    padding: 0 4px 0 2px;
+}
+
+.apps-widget .widget-container .label {
+    font-size: 12px;
+}
+
+.apps-widget .label {
+    font-size: 14px;
+    padding: 0 1px;
+    color: var(--foreground-color);
+}
+
+/* ============================================
+   WIDGETS - KOMOREBI
+   ============================================ */
+
+/* --- Komorebi Workspaces --- */
+.komorebi-workspaces {
+    padding: 0;
+}
+
+.komorebi-workspaces .offline-status {
+    color: var(--foreground-color);
+    font-size: 12px;
+    padding: 0 4px;
+    font-weight: 600;
+}
+
+.komorebi-workspaces .ws-btn {
+    color: transparent;
+    width: 10px;
+    height: 10px;
+    background-color: var(--active-color);
+    border-radius: 5px;
+    margin: 0 2px;
+    font-size: 1px;
+}
+
+.komorebi-workspaces .ws-btn:hover {
+    color: var(--accent-color);
+    background-color: var(--hover-color);
+}
+
+.komorebi-workspaces .ws-btn.populated {
+    width: 10px;
+    height: 10px;
+    background-color: var(--active-color);
+    border-radius: 5px;
+    margin: 0 2px;
+    font-size: 1px;
+}
+
+.komorebi-workspaces .ws-btn.active {
+    color: transparent;
+    background-color: var(--icon-color);
+    width: 36px;
+    height: 10px;
+    border-radius: 5px;
+}
+
+/* --- Komorebi Active Layout --- */
+.komorebi-active-layout {
+    padding: 0 4px;
+}
+
+.komorebi-active-layout .label {
+    font-weight: 600;
+    padding-bottom: 2px;
+}
+
+/* ============================================
+   WIDGETS - GLAZEWM
+   ============================================ */
+
+/* --- GlazeWM Workspaces --- */
 .glazewm-workspaces {
     padding: 0;
 }
 
-.komorebi-workspaces .offline-status,
 .glazewm-workspaces .offline-status {
     color: var(--foreground-color);
     font-size: 12px;
@@ -96,7 +176,6 @@
     font-weight: 600;
 }
 
-.komorebi-workspaces .ws-btn,
 .glazewm-workspaces .ws-btn {
     color: transparent;
     width: 10px;
@@ -107,13 +186,11 @@
     font-size: 1px;
 }
 
-.komorebi-workspaces .ws-btn:hover,
 .glazewm-workspaces .ws-btn:hover {
     color: var(--accent-color);
     background-color: var(--hover-color);
 }
 
-.komorebi-workspaces .ws-btn.populated,
 .glazewm-workspaces .ws-btn.populated {
     width: 10px;
     height: 10px;
@@ -123,7 +200,6 @@
     font-size: 1px;
 }
 
-.komorebi-workspaces .ws-btn.active,
 .glazewm-workspaces .ws-btn.active_populated,
 .glazewm-workspaces .ws-btn.active_empty {
     color: transparent;
@@ -133,7 +209,7 @@
     border-radius: 5px;
 }
 
-/* --- Glazewm Tiling Direction --- */
+/* --- GlazeWM Tiling Direction --- */
 .glazewm-tiling-direction {
     background-color: transparent;
     padding: 0;
@@ -156,12 +232,9 @@
     background-color: var(--hover-color);
 }
 
-/* --- Apps Widget Label --- */
-.apps-widget .label {
-    font-size: 14px;
-    padding: 0 2px;
-    color: var(--foreground-color);
-}
+/* ============================================
+   WIDGETS - SYSTEM INFO
+   ============================================ */
 
 /* --- Uptime Widget --- */
 .uptime {
@@ -171,7 +244,60 @@
     font-weight: 600;
 }
 
+/* --- Volume Widget --- */
+.volume-widget {
+    margin-right: 5px; 
+}
+
+.volume-widget .icon {
+    color: var(--foreground-color);
+    margin: 1px 2px 0 0;
+}
+
+/* --- Battery Widget --- */
+
+.battery-widget {
+    padding: 0px;
+    margin-right: 0px;
+}
+
+.battery-widget .icon {
+    margin-right: 6px;
+    color: var(--foreground-color);
+}
+
+/* --- Brightness Widget --- */
+.brightness-widget {
+    padding: 0px;
+    margin-right: 0px;
+}
+
+.brightness-widget .icon {
+    color: var(--foreground-color);
+    margin: 0px;
+}
+
+
+/* --- Weather Widget --- */
+.weather-widget {
+    padding: 0 4px;
+}
+.weather-widget .icon {
+    font-size: 14px;
+    /* margin: 0 2px 1px 0; */
+    padding-right: 5px;
+}
+
+/* ============================================
+   WIDGETS - POWER MENU
+   ============================================ */
+
 /* --- Power Menu Widget --- */
+.power-menu-widget {
+    padding: 0 12px;
+    padding-right: 5px;
+}
+
 .power-menu-widget .label {
     font-size: 13px;
 }
@@ -244,42 +370,16 @@
     border-radius: 4px;
 }
 
-/* --- Volume Widget --- */
-.volume-widget .icon {
-    color: var(--foreground-color);
-    margin: 1px 2px 0 0;
-}
+/* ============================================
+   WIDGETS - WIFI
+   ============================================ */
 
-/* --- Battery Widget --- */
-.battery-widget .icon {
-    margin-right: 6px;
-    color: var(--foreground-color);
-}
-/* --- Brightness Widget --- */
-.brightness-widget {
-    margin-right: -10px;
-}
-
-.brightness-widget .icon {
-    color: var(--foreground-color);
-}
-
-/* --- Common Widget Padding --- */
-.weather-widget,
-.battery-widget,
-.volume-widget,
-.brightness-widget {
-    padding: 0 10px;
-}
-
-.wifi-widget {
-    padding: 0;
-}
-
-.wifi-widget .widget-container .icon{
+/* --- WiFi Widget --- */
+.wifi-widget .widget-container .icon {
     font-size: 14px;
 }
 
+/* --- WiFi Menu --- */
 .wifi-menu {
     background-color: rgba(17, 17, 27, 0.4);
     max-height: 350px;
@@ -413,11 +513,10 @@
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 4px;
 }
-/* --- Weather Widget --- */
-.weather-widget .icon {
-    font-size: 14px;
-    margin: 0 2px 1px 0;
-}
+
+/* ============================================
+   WIDGETS - WALLPAPERS
+   ============================================ */
 
 /* --- Wallpapers Widget --- */
 .wallpapers-widget .icon {
@@ -457,7 +556,7 @@
     color: var(--foreground-color);
 }
 
-/* --- Wallpapers Gallery Window --- */
+/* --- Wallpapers Gallery --- */
 .wallpapers-gallery-window {
     background-color: rgba(20, 13, 14, 0.9);
     border: 0;
@@ -494,6 +593,50 @@
 .wallpapers-gallery-image.focused {
     border: 4px solid var(--accent-color);
 }
+
+/* ============================================
+   WIDGETS - TASKBAR
+   ============================================ */
+
+/* --- Taskbar Widget --- */
+.taskbar-widget {
+    padding: 0;
+    margin: 0;
+    border: none;
+}
+
+.taskbar-widget .app-container {
+    padding: 0 3px;
+    border: none;
+    margin: 0;
+}
+
+.taskbar-widget .app-container:hover {
+    background-color: var(--hover-color);
+    border-radius: 3px;
+}
+
+.taskbar-widget .app-container .app-title {
+    padding-left: 4px;
+}
+
+/* ============================================
+   WIDGETS - WHKD
+   ============================================ */
+
+/* --- Whkd Widget --- */
+.whkd-widget {
+    padding: 0 6px 0 6px;
+}
+
+.whkd-widget .icon {
+    font-size: 14px;
+    color: var(--foreground-color);
+}
+
+/* ============================================
+   WIDGETS - SYSTRAY
+   ============================================ */
 
 /* --- Systray --- */
 .systray {
@@ -532,17 +675,25 @@
 }
 
 /* --- Media Widget --- */
-.media-widget .btn {
-    color: #9498a8;
-    padding: 0 4px;
-    margin: 0;
-    font-family: "Segoe Fluent Icons";
-    font-weight: 400;
+/* 
+
+.media-widget {}
+.media-widget .widget-container {}
+.media-widget .label {}
+.media-widget .label.alt {}
+.media-widget .btn.play {}
+.media-widget .btn.prev {}
+.media-widget .btn.next {}
+.media-widget .btn.disabled {} 
+
+*/
+
+
+/* --- CPU Widget --- */
+.cpu-widget {
+    padding: 1px;
 }
 
-/* --- Common Styles --- */
-.wifi-widget,
-.brightness-widget,
-.systray {
-    margin-top: 2.4px;
+.cpu-widget .widget-container .icon {
+    padding: 0px 4px;
 }
