@@ -1,29 +1,69 @@
-## --- PowerShell Script to List Folder Names ---
+# Written by Jaysum on 2024-06-10
 
-# Define the path to the folder you want to check
-# By default use the Themes folder that sits next to this script. Using $PSScriptRoot
-# makes the script work no matter which directory you run it from.
-$FolderPath = Join-Path -Path $PSScriptRoot -ChildPath "Themes"
+function menu {
+    param (
+        [string]$title,
+        [string[]]$options
+    )
 
-# Check if the folder exists before proceeding
-if (-not (Test-Path -Path $FolderPath -PathType Container)) {
-    Write-Error "Error: The folder '$FolderPath' does not exist."
-    exit 1
+    Write-Host $title -ForegroundColor Cyan
+    for ($i = 0; $i -lt $options.Length; $i++) {
+        Write-Host "[$($i + 1)] $($options[$i])"
+    }
+
+    do {
+        $selection = Read-Host "Please select an option (1-$($options.Length))"
+    } while (-not ($selection -as [int]) -or $selection -lt 1 -or $selection -gt $options.Length)
+
+    return $options[$selection - 1]
 }
 
-Write-Host "--- Folders Found in: $FolderPath ---" -ForegroundColor Green 
+function Get-Configuration {
+    $configPath = Join-Path -Path $PSScriptRoot -ChildPath "config.json"
+    if (-not (Test-Path -Path $configPath)) {
+        Write-Error "Configuration file not found at $configPath"
+        exit 1
+    }
 
-# Use Get-ChildItem to retrieve all items in the path
-# -Directory filters the results to only include folders
-# Select-Object -ExpandProperty Name pulls just the name string for a clean list
-$FolderNames = Get-ChildItem -Path $FolderPath -Directory | Select-Object -ExpandProperty Name
-
-# Check if any folders were found
-if ($FolderNames.Count -eq 0) {
-    Write-Host "No subfolders found in '$FolderPath'." -ForegroundColor Yellow
-} else {
-    # Print each folder name
-    $FolderNames
+    $jsonContent = Get-Content -Path $configPath -Raw
+    return $jsonContent | ConvertFrom-Json
 }
 
-Write-Host "--------------------------------------" -ForegroundColor Green
+function Install-Packages {
+    param (
+        [Parameter(Mandatory=$true)]
+        [psobject]$Config
+    )
+
+    foreach ($package in $Config.packages) {
+        try {
+            winget install --id $package --silent --accept-package-agreements -ErrorAction Stop
+            Write-Host "✓ Installed: $package" -ForegroundColor Green
+        }
+        catch {
+            Write-Host "✗ Failed to install: $package" -ForegroundColor Red
+            Write-Host $_.Exception.Message -ForegroundColor DarkRed
+        }
+    }
+}
+
+# $PSScriptRoot is the directory where this script is located
+function main{
+    $options = @("Install Packages", "Change Theme", "Exit")
+    $choice = menu -title "Main Menu" -options $options
+
+    switch ($choice) {
+        "Install Packages" {
+        }
+        "Change Theme" {
+            . "$PSScriptRoot/theme_changer.ps1"
+        }
+        "Exit" {
+            Write-Host "Exiting..." -ForegroundColor Yellow
+            exit 0
+        }
+    }
+}
+
+# Start the script
+main
