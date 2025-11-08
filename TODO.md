@@ -16,6 +16,7 @@
   - get feedback from user
   - *Set yasb home directory instead*
     - https://github.com/amnweb/yasb/wiki/FAQ#q-how-to-set-custom-configuration-directory 
+  - Add dev folder and quick access users/Jaysum
 
 
 
