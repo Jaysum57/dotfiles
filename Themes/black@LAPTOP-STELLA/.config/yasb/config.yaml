@@ -5,7 +5,7 @@ update_check: true
 komorebi:
   start_command: "komorebic start --whkd"
   stop_command: "komorebic stop --whkd"
-  reload_command: "komorebic stop --whkd && komorebic start --whkd"
+  reload_command: "komorebic reload-configuration"
 bars:
   primary-bar:
     enabled: true
@@ -21,8 +21,9 @@ bars:
       round_corners: true
       border_color: None
     window_flags:
-      always_on_top: false
-      windows_app_bar: true
+      always_on_top: true
+      windows_app_bar: true 
+      hide_on_fullscreen: true
     dimensions:
       width: "100%"
       height: 36
@@ -42,19 +43,28 @@ bars:
       center: [
         "clock",
         "apps",
-        "media"
+        "media",
       ]
       right: [
         "cpu",
-        # "systray",
-        "brightness",
+        "gpu",
+        # "systray", 
         # "wallpapers",
-        "weather",
+        # "weather",
+        "brightness",
+        "volume",
         "wifi",
-        "battery",
-        "volume"
+        "battery"
       ]
 widgets:
+  sysinfo:
+    type: "yasb.grouper.GrouperWidget"
+    options:
+      class_name: "sysinfo"
+      widgets: [
+        "cpu",
+        "gpu"
+      ]
   cpu:
     type: "yasb.cpu.CpuWidget"
     options:
@@ -76,21 +86,37 @@ widgets:
         - "\u2587" # 70%
         - "\u2588" # 80%+
       histogram_num_columns: 8
+  gpu:
+    type: "yasb.gpu.GpuWidget"
+    options:
+      label: "| {info[utilization]}%"
+      label_alt: "<span>\uf4bc</span> {info[temp]}°C | {info[mem_used]} / {info[mem_total]}"
+      update_interval: 2000
+      gpu_thresholds:
+        low: 25
+        medium: 50
+        high: 90
+      histogram_icons:
+        - "\u2581" # 0%
+        - "\u2581" # 10%
+        - "\u2582" # 20%
+        - "\u2583" # 30%
+        - "\u2584" # 40%
+        - "\u2585" # 50%
+        - "\u2586" # 60%
+        - "\u2587" # 70%
+        - "\u2588" # 80%+
+      histogram_num_columns: 8
       callbacks:
-        on_right: "exec cmd /c Taskmgr"
-      label_shadow:
-        enabled: true
-        color: "black"
-        radius: 3
-        offset: [ 1, 1 ]
+        on_left: "toggle_label"
   komorebi_workspaces:
     type: "komorebi.workspaces.WorkspaceWidget"
     options:
       label_offline: "\uf186 offline"
-      label_workspace_btn: ""
-      label_workspace_active_btn: ""
-      label_workspace_populated_btn: ""
-      label_default_name: ""
+      label_workspace_btn: " "
+      label_workspace_active_btn: " "
+      label_workspace_populated_btn: " "
+      label_default_name: " "
       label_zero_index: false
       hide_empty_workspaces: true 
       hide_if_offline: false
@@ -322,8 +348,7 @@ widgets:
         on_middle: "do_nothing"
         on_right: "do_nothing"
       max_field_size:
-        label: 20
-        label_alt: 30
+        label: 16
       show_thumbnail: false
       controls_only: false
       controls_left: false
@@ -336,15 +361,15 @@ widgets:
         play: "\udb81\udc0a"
         pause: "\udb80\udfe4"
       scrolling_label:
-        update_interval_ms: 33
+        update_interval_ms: 80
         enabled: true
-        style: "bounce"  # can be "left", "right", "bounce", "bounce-ease"
+        style: "right"  # can be "left", "right", "bounce", "bounce-ease"
         separator: "]  ["
         label_padding: 0
         # Easing curve params: https://www.desmos.com/calculator/j7eamemxzi
         ease_slope: 80
-        ease_pos: 0.8
-        ease_min: 0.5
+        ease_pos: 0.34
+        ease_min: 0.16
   apps:
     type: "yasb.applications.ApplicationsWidget"
     options:
