@@ -1,69 +1,92 @@
-# Written by Jaysum on 2024-06-10
+# setup.ps1
+# Interactive PowerShell script that reads config.json from the same directory,
+# and performs actions (install packages, configure git) based on user choice.
 
-function menu {
-    param (
-        [string]$title,
-        [string[]]$options
-    )
+# Get script directory and JSON path
+$scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Definition
+$jsonPath = Join-Path $scriptDir "config.json"
 
-    Write-Host $title -ForegroundColor Cyan
-    for ($i = 0; $i -lt $options.Length; $i++) {
-        Write-Host "[$($i + 1)] $($options[$i])"
-    }
-
-    do {
-        $selection = Read-Host "Please select an option (1-$($options.Length))"
-    } while (-not ($selection -as [int]) -or $selection -lt 1 -or $selection -gt $options.Length)
-
-    return $options[$selection - 1]
+# Load config.json
+if (-not (Test-Path $jsonPath)) {
+    Write-Host "Error: config.json not found in $scriptDir" -ForegroundColor Red
+    exit 1
 }
 
-function Get-Configuration {
-    $configPath = Join-Path -Path $PSScriptRoot -ChildPath "config.json"
-    if (-not (Test-Path -Path $configPath)) {
-        Write-Error "Configuration file not found at $configPath"
-        exit 1
-    }
+$config = Get-Content -Path $jsonPath -Raw | ConvertFrom-Json
 
-    $jsonContent = Get-Content -Path $configPath -Raw
-    return $jsonContent | ConvertFrom-Json
-}
+# --- Functions ---
 
 function Install-Packages {
-    param (
-        [Parameter(Mandatory=$true)]
-        [psobject]$Config
-    )
-
-    foreach ($package in $Config.packages) {
+    Write-Host "`n=== Installing Packages ===" -ForegroundColor Cyan
+    foreach ($package in $config.packages) {
+        Write-Host "Installing $package..." -ForegroundColor Yellow
         try {
-            winget install --id $package --silent --accept-package-agreements -ErrorAction Stop
-            Write-Host "✓ Installed: $package" -ForegroundColor Green
+            winget install --id $package -e --accept-package-agreements --accept-source-agreements -h | Out-Null
+            Write-Host "✓ $package installed successfully." -ForegroundColor Green
         }
         catch {
-            Write-Host "✗ Failed to install: $package" -ForegroundColor Red
-            Write-Host $_.Exception.Message -ForegroundColor DarkRed
+            Write-Host "✗ Failed to install $package. Skipping..." -ForegroundColor Red
         }
     }
 }
 
-# $PSScriptRoot is the directory where this script is located
-function main{
-    $options = @("Install Packages", "Change Theme", "Exit")
-    $choice = menu -title "Main Menu" -options $options
+
+function Configure-Git {
+    if ($config.gitConfig) {
+        $gitName = $config.gitConfig.name
+        $gitEmail = $config.gitConfig.email
+
+        Write-Host "`n=== Configuring Git User ===" -ForegroundColor Cyan
+        git config --global user.name "$gitName"
+        git config --global user.email "$gitEmail"
+        Write-Host "✓ Git user set to '$gitName <$gitEmail>'." -ForegroundColor Green
+    } 
+    
+    else {
+        Write-Host "No gitConfig section found in config.json." -ForegroundColor Yellow
+    }
+}
+
+function Show-Menu {
+    Clear-Host
+    Write-Host "==================================" -ForegroundColor DarkCyan
+    Write-Host "   Setup Script by Jude Agustino   " -ForegroundColor Cyan
+    Write-Host "==================================" -ForegroundColor DarkCyan
+    Write-Host ""
+    Write-Host "1. Install Packages" -ForegroundColor Yellow
+    Write-Host "2. Configure Git" -ForegroundColor Yellow
+    Write-Host "3. View JSON Config" -ForegroundColor Yellow
+    Write-Host "4. Exit" -ForegroundColor Yellow
+    Write-Host ""
+}
+
+# --- Menu Loop ---
+do {
+    Show-Menu
+    $choice = Read-Host "Enter your choice (1-4)"
 
     switch ($choice) {
-        "Install Packages" {
+        "1" {
+            Install-Packages
+            Pause
         }
-        "Change Theme" {
-            . "$PSScriptRoot/theme_changer.ps1"
+        "2" {
+            Configure-Git
+            Pause
         }
-        "Exit" {
-            Write-Host "Exiting..." -ForegroundColor Yellow
-            exit 0
+        "3" {
+            Write-Host "`n--- JSON Configuration ---" -ForegroundColor Cyan
+            Get-Content $jsonPath
+            Write-Host "`n--------------------------" -ForegroundColor Cyan
+            Pause
+        }
+        "4" {
+            Write-Host "Exiting..." -ForegroundColor Cyan
+            break
+        }
+        default {
+            Write-Host "Invalid selection. Please try again." -ForegroundColor Red
+            Start-Sleep -Seconds 1.5
         }
     }
-}
-
-# Start the script
-main
+} while ($choice -ne "4")
