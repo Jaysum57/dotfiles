@@ -1,0 +1,674 @@
+/* GLOBAL CONFIGURATIONS */
+* {
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+}
+
+/* CPU */
+.cpu-widget {
+  background-color: rgba(0, 0, 0, 0.95);
+  border-radius: 6px;
+  margin: 0 2px 0 1px;
+  outline: none;
+  width: 90px;
+  min-width: 90px;
+  max-width: 90px;
+}
+.cpu-widget .label {
+  font-family: "JetBrains Mono";
+  font-size: 14px;
+  font-weight: bold;
+  color: #eeeeee;
+  padding-right: 10px;
+  width: 50px;
+  min-width: 50px;
+  max-width: 50px;
+}
+.cpu-widget .label.alt {
+  padding-left: 6px;
+}
+.cpu-widget .icon {
+  font-family: "Segoe Fluent Icons";
+  font-weight: bold;
+  font-size: 16px;
+  padding-right: 10px;
+  padding-left: 9px;
+  color: #eeeeee;
+}
+
+/* MEMORY */
+.memory-widget {
+  background-color: rgba(0, 0, 0, 0.95);
+  border-radius: 6px;
+  outline: none;
+}
+.memory-widget .label {
+  font-family: "JetBrains Mono";
+  font-size: 14px;
+  font-weight: bold;
+  color: #eeeeee;
+  padding: 0 12px 0 2px;
+}
+.memory-widget .icon {
+  font-family: "Segoe Fluent Icons";
+  color: #eeeeee;
+  font-size: 18px;
+  font-weight: bold;
+  padding-right: 12px;
+  padding-left: 8px;
+}
+
+/* TRAFFIC */
+.traffic-widget {
+  background-color: rgba(0, 0, 0, 0.95);
+  padding: 0 10px 2px 10px;
+  border-radius: 6px;
+  margin: 0 1px 0 2px;
+  outline: none;
+}
+.traffic-widget .label {
+  color: #eeeeee;
+  padding: 0 8px;
+  font-family: "JetBrains Mono";
+  font-size: 14px;
+  font-weight: bold;
+  margin-left: 1px;
+}
+.traffic-widget .download {
+  color: #eeeeee;
+  padding-top: 2px;
+  font-family: "JetBrains Mono";
+  font-weight: bold;
+  font-size: 14px;
+}
+.traffic-widget .upload {
+  color: #eeeeee;
+  padding-top: 2px;
+  font-family: "JetBrains Mono";
+  font-weight: bold;
+  font-size: 14px;
+}
+
+/* TRAFFIC MENU */
+.traffic-menu {
+  background-color: rgba(0, 0, 0, 0.98);
+  border: 1px solid #333333;
+  color: #eeeeee;
+  border-radius: 6px;
+  font-family: "JetBrains Mono";
+  font-size: 14px;
+  min-width: 220px;
+}
+.traffic-menu .header {
+  border-bottom: 1px solid #444444;
+  background-color: rgba(0, 0, 0, 0.95);
+}
+.traffic-menu .header .title {
+  padding-left: 6px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #e0e0e0;
+}
+.traffic-menu .header .reset-button {
+  font-size: 12px;
+  padding-right: 4px;
+  padding-top: 2px;
+  margin-right: 8px;
+  font-weight: bold;
+  background-color: transparent;
+  border: none;
+  color: #eeeeee;
+  outline: none;
+}
+.traffic-menu .download-speed,
+.traffic-menu .upload-speed {
+  background-color: transparent;
+  margin: 16px 12px -8px 12px;
+}
+.traffic-menu .speed-separator {
+  max-width: 1px;
+  background-color: #444444;
+  margin: 32px 0 16px 0;
+}
+.traffic-menu .upload-speed-value,
+.traffic-menu .download-speed-value {
+  color: #e0e0e0;
+  font-size: 24px;
+  font-weight: bold;
+  font-family: "JetBrains Mono";
+}
+.traffic-menu .upload-speed-unit,
+.traffic-menu .download-speed-unit {
+  color: #e0e0e0;
+  font-size: 13px;
+  font-weight: bold;
+  padding-top: 4px;
+}
+.traffic-menu .download-speed-placeholder {
+  color: transparent;
+}
+.traffic-menu .upload-speed-placeholder {
+  color: transparent;
+}
+.traffic-menu .section-title {
+  font-size: 13px;
+  font-weight: bold;
+  background-color: transparent;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  color: #888888;
+  margin-bottom: 4px;
+}
+.traffic-menu .session-section,
+.traffic-menu .today-section,
+.traffic-menu .alltime-section {
+  margin: 8px 8px 0 8px;
+  background-color: transparent;
+}
+.traffic-menu .data-text,
+.traffic-menu .data-value {
+  font-weight: bold;
+  font-size: 13px;
+  color: #e0e0e0;
+  padding: 2px 0;
+}
+.traffic-menu .interface-info,
+.traffic-menu .internet-info {
+  background-color: rgba(0, 0, 0, 0.95);
+  border-top: 1px solid #444444;
+  font-size: 12px;
+  font-weight: bold;
+  font-family: "JetBrains Mono";
+  color: #eeeeee;
+  padding: 8px 0;
+  margin-top: 16px;
+}
+.traffic-menu .internet-info.connected {
+  color: #eeeeee;
+  margin-top: 0;
+}
+.traffic-menu .internet-info.disconnected {
+  color: #eeeeee;
+  margin-top: 0;
+}
+
+/* KOMOREBI LAYOUT */
+.komorebi-active-layout .label {
+  background-color: rgba(0, 0, 0, 0.95);
+  color: #e0e0e0;
+  font-family: "Segoe Fluent Icons";
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 2px;
+  padding: 1px 12px 2px 6px;
+  border-radius: 6px;
+  outline: none;
+}
+.komorebi-layout-menu {
+  border: 1px solid #333333;
+  background-color: rgba(0, 0, 0, 0.98);
+  color: #e0e0e0;
+  border-radius: 6px;
+  font-family: "JetBrains Mono";
+  font-size: 14px;
+}
+.komorebi-layout-menu .menu-item {
+  padding: 4px 16px;
+  color: #e0e0e0;
+  font-size: 14px;
+}
+.komorebi-layout-menu .menu-item-icon {
+  color: #e0e0e0;
+  font-size: 18px;
+  font-weight: bold;
+}
+.komorebi-layout-menu .menu-item-text {
+  font-family: "JetBrains Mono";
+  padding-left: 4px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #e0e0e0;
+}
+.komorebi-layout-menu .menu-item:hover {
+  border: 2px solid #eeeeee;
+  border-radius: 2px;
+}
+.komorebi-layout-menu .separator {
+  max-height: 1px;
+  background-color: #444444;
+}
+
+/* KOMOREBI WORKSPACES */
+.komorebi-workspaces .ws-btn {
+  font-family: "JetBrains Mono";
+  font-size: 14px;
+  font-weight: bold;
+  padding: 6px 12px 6px 12px;
+  border-radius: 6px;
+  margin-left: 2px;
+  outline: none;
+}
+.komorebi-workspaces .ws-btn.populated {
+  background-color: rgba(0, 0, 0, 0.95);
+  color: #eeeeee;
+}
+.komorebi-workspaces .ws-btn.active {
+  background-color: rgba(0, 0, 0, 0.95);
+  color: #eeeeee;
+}
+
+/* ACTIVE WINDOW */
+.active-window-widget {
+  background-color: rgba(0, 0, 0, 0.95);
+  padding: 0 10px 2px 10px;
+  border-radius: 6px;
+  margin-left: 2px;
+  outline: none;
+}
+.active-window-widget .label {
+  color: #eeeeee;
+  font-family: "JetBrains Mono";
+  font-size: 14px;
+  font-weight: bold;
+  padding-top: 4px;
+}
+
+/* MEDIA */
+.media-widget {
+  background-color: rgba(0, 0, 0, 0.95);
+  border-radius: 6px;
+  padding: 2px 12px 0 12px;
+  margin-right: 1px;
+  margin-left: 2px;
+  outline: none;
+}
+.media-widget .label {
+  color: #eeeeee;
+  background: transparent;
+  font-family: "JetBrains Mono";
+  font-size: 14px;
+  font-weight: bold;
+  padding-left: 10px;
+  padding-top: 1px;
+  padding-bottom: 2px;
+}
+.media-widget .btn {
+  background: transparent;
+  font-family: "Segoe Fluent Icons";
+  color: #eeeeee;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 1px 6px 2px 3px;
+}
+.media-widget .btn.play {
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+/* MEDIA POPUP */
+.media-menu {
+  min-width: 400px;
+  max-width: 400px;
+  background-color: rgba(0, 0, 0, 0.98);
+  border: 1px solid #333333;
+  border-radius: 6px;
+  outline: none;
+}
+.media-menu .thumbnail {
+  margin-left: 4px;
+  margin-right: 4px;
+  border: 1px solid #333333;
+  border-radius: 6px;
+}
+.media-menu .title,
+.media-menu .artist,
+.media-menu .source {
+  font-weight: bold;
+  font-family: "JetBrains Mono";
+  color: #eeeeee;
+  margin-left: 10px;
+}
+.media-menu .title {
+  padding-left: 4px;
+  font-size: 16px;
+}
+.media-menu .artist {
+  font-size: 14px;
+  margin-top: 4px;
+  margin-bottom: 12px;
+  padding-left: 4px;
+}
+.media-menu .source {
+  font-size: 12px;
+  font-weight: bold;
+  color: #000000;
+  background-color: #e0e0e0;
+  border-radius: 6px;
+  padding: 2px 4px;
+}
+.media-menu .source.brave {
+  background: transparent;
+  border: 1px solid #eeeeee;
+  color: #eeeeee;
+}
+.media-menu .source.firefox {
+  background-color: #eeeeee;
+  color: #000000;
+}
+.media-menu .source.opera,
+.media-menu .source.vivaldi {
+  background-color: #eeeeee;
+  color: #000000;
+}
+.media-menu .source.spotify {
+  background-color: #00ff88;
+  color: #000000;
+}
+.media-menu .source.edge,
+.media-menu .source.windows-media {
+  background-color: #0099ff;
+  color: #000000;
+}
+.media-menu .btn {
+  font-family: "Segoe Fluent Icons";
+  font-size: 14px;
+  font-weight: bold;
+  min-width: 40px;
+  max-width: 40px;
+  min-height: 40px;
+  max-height: 40px;
+  color: #ffffff;
+}
+.media-menu .btn.prev {
+  margin-left: 10px;
+}
+.media-menu .btn.play {
+  background-color: transparent;
+  font-size: 20px;
+}
+.media-menu .btn.disabled {
+  color: #333333;
+}
+.media-menu .playback-time {
+  font-size: 14px;
+  font-family: "JetBrains Mono";
+  font-weight: bold;
+  color: #ffffff;
+  margin-top: 12px;
+  min-width: 100px;
+}
+.media-menu .progress-slider {
+  height: 10px;
+  border-radius: 6px;
+}
+.media-menu .progress-slider::groove {
+  background: transparent;
+  height: 4px;
+  border-radius: 6px;
+}
+.media-menu .progress-slider::groove:hover {
+  background: #444444;
+  height: 6px;
+  border-radius: 6px;
+}
+.media-menu .progress-slider::sub-page {
+  background: #ff6b9d;
+  border-radius: 6px;
+  height: 4px;
+}
+
+/* SYSTRAY */
+.systray {
+  background-color: rgba(0, 0, 0, 0.95);
+  margin-right: 2px;
+  margin-left: 3px;
+  border-radius: 6px;
+  padding: 1px;
+}
+.systray .button {
+  background: transparent;
+  padding: 2px;
+  border: none;
+  outline: none;
+}
+.systray .unpinned-visibility-btn {
+  color: #eeeeee;
+  background: transparent;
+  border: none;
+  padding: 5px 10px 2px 10px;
+  font-family: "Segoe Fluent Icons";
+  font-weight: bold;
+  font-size: 16px;
+  outline: none;
+}
+
+/* WEATHER */
+.weather-widget {
+  background-color: rgba(0, 0, 0, 0.95);
+  border-radius: 6px;
+  outline: none;
+}
+.weather-widget .label,
+.weather-widget .label.alt {
+  font-family: "JetBrains Mono";
+  font-size: 14px;
+  font-weight: bold;
+  color: #e0e0e0;
+  padding: 2px 14px 0 12px;
+}
+.weather-widget .icon {
+  font-family: "Segoe Fluent Icons";
+  font-size: 20px;
+  padding-left: 12px;
+  padding-bottom: 2px;
+  padding-top: 2px;
+}
+.weather-widget .icon.sunnyDay {
+  color: #ffaa00;
+}
+.weather-widget .icon.clearNight {
+  color: #9999ff;
+}
+.weather-widget .icon.cloudyDay,
+.weather-widget .icon.cloudyNight {
+  color: #00d9ff;
+  padding-bottom: 4px;
+}
+.weather-widget .icon.rainyDay,
+.weather-widget .icon.rainyNight {
+  color: #0099ff;
+  font-size: 16px;
+}
+.weather-widget .icon.snowyIcyDay,
+.weather-widget .icon.snowyIcyNight {
+  color: #e0e0e0;
+  padding-bottom: 4px;
+}
+.weather-widget .icon.blizzardDay,
+.weather-widget .icon.blizzardNight {
+  color: #00d9ff;
+  padding-bottom: 4px;
+}
+.weather-widget .icon.foggyDay,
+.weather-widget .icon.foggyNight {
+  color: #e0e0e0;
+  font-size: 16px;
+}
+.weather-widget .icon.thunderstormDay,
+.weather-widget .icon.thunderstormNight {
+  color: #9999ff;
+  font-size: 16px;
+}
+.weather-widget .icon.default {
+  color: #e0e0e0;
+}
+
+/* WEATHER CARD */
+.weather-card {
+  background-color: rgba(0, 0, 0, 0.98);
+  border: 1px solid #333333;
+  border-radius: 6px;
+  padding: 10px;
+  outline: none;
+}
+.weather-card-today {
+  background-color: rgba(0, 0, 0, 0.98);
+  font-family: "JetBrains Mono";
+  font-weight: bold;
+  border-radius: 6px;
+  padding: 10px;
+}
+.weather-card-today .label {
+  font-family: "JetBrains Mono";
+  font-size: 12px;
+  font-weight: bold;
+  color: #e0e0e0;
+}
+.weather-card-today .label.location {
+  font-family: "JetBrains Mono";
+  font-weight: bold;
+  font-size: 24px;
+}
+.weather-card-today .label.alert {
+  border-radius: 6px;
+  padding: 5px 0;
+}
+.weather-card-day {
+  background-color: rgba(0, 0, 0, 0.98);
+  font-family: "JetBrains Mono";
+  font-weight: bold;
+  border-radius: 6px;
+}
+.weather-card-day .label {
+  font-family: "JetBrains Mono";
+  font-weight: bold;
+  font-size: 12px;
+  color: #e0e0e0;
+}
+
+/* CLOCK */
+.clock-widget {
+  background-color: rgba(0, 0, 0, 0.95);
+  padding: 0 10px;
+  margin-left: 2px;
+  border-radius: 6px;
+  outline: none;
+}
+.clock-widget .label {
+  color: #e0e0e0;
+  font-family: "JetBrains Mono";
+  font-size: 14px;
+  font-weight: bold;
+  padding-top: 2px;
+}
+
+/* CALENDAR */
+.calendar {
+  background-color: rgba(0, 0, 0, 0.98);
+  border: 1px solid #333333;
+  border-radius: 6px;
+}
+.calendar .calendar-table,
+.calendar .calendar-table::item {
+  background-color: rgba(0, 0, 0, 0);
+  color: #e0e0e0;
+  font-family: "JetBrains Mono";
+  font-weight: bold;
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+}
+.calendar .calendar-table::item:selected {
+  border: 2px solid #eeeeee;
+  border-radius: 6px;
+}
+.calendar .day-label,
+.calendar .month-label,
+.calendar .date-label {
+  font-family: "JetBrains Mono";
+  font-weight: bold;
+  color: #e0e0e0;
+  min-width: 140px;
+  max-width: 140px;
+}
+.calendar .day-label {
+  font-size: 14px;
+  margin-top: 20px;
+}
+.calendar .month-label {
+  font-size: 14px;
+}
+.calendar .date-label {
+  font-size: 88px;
+  margin-top: -10px;
+}
+
+/* VOLUME */
+.volume-widget {
+  background-color: rgba(0, 0, 0, 0.95);
+  padding: 0 10px;
+  border-radius: 6px;
+  margin: 0 1px 0 2px;
+  outline: none;
+}
+.volume-widget .icon {
+  font-family: "Segoe Fluent Icons";
+  color: #e0e0e0;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 2px 2px 0 2px;
+}
+.volume-widget .label {
+  font-family: "JetBrains Mono";
+  font-size: 14px;
+  font-weight: bold;
+  color: #e0e0e0;
+  padding: 2px 2px 0 2px;
+}
+
+/* VOLUME POPUP */
+.audio-menu {
+  background-color: rgba(0, 0, 0, 0.98);
+  border: 1px solid #333333;
+  border-radius: 6px;
+  outline: none;
+}
+.audio-container .device {
+  font-family: "JetBrains Mono";
+  color: #e0e0e0;
+  font-weight: bold;
+  border: none;
+  padding: 6px 8px 6px 4px;
+  font-size: 13px;
+  border-radius: 6px;
+  outline: none;
+}
+.audio-container .device.selected {
+  border: 2px solid #eeeeee;
+}
+
+/* NOTIFICATIONS */
+.notification-widget {
+  background-color: rgba(0, 0, 0, 0.95);
+  margin: 0 2px;
+  border-radius: 6px;
+  outline: none;
+}
+.notification-widget .icon {
+  font-family: "Segoe Fluent Icons";
+  color: #eeeeee;
+  padding-right: 10px;
+  padding-left: 6px;
+  font-size: 14px;
+  font-weight: bold;
+}
+.notification-widget .label {
+  font-family: "JetBrains Mono";
+  color: #eeeeee;
+  font-size: 14px;
+  font-weight: bold;
+  padding-right: 4px;
+}
