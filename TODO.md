@@ -22,11 +22,16 @@
 
 # Download Applications List
 
-**Komorebi**
-- `Set-ItemProperty 'HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem' -Name 'LongPathsEnabled' -Value 1`
-  - enables support for long paths in Windows
-- `winget install LGUG2Z.komorebi1 LGUG2Z.whkd`
-  - Downloads komorebi and whkd through winget
+## PowershellGallery
+- **Terminal Icons** - `Install-Module -Name Terminal-Icons -Repository PSGallery`
+
+
+## Winget packages
+1. **Komorebi**
+- `set-itemproperty 'hklm:\system\currentcontrolset\control\filesystem' -name 'longpathsenabled' -value 1`
+  - enables support for long paths in windows
+- `winget install lgug2z.komorebi1 lgug2z.whkd`
+  - downloads komorebi and whkd through winget
 - `komorebic fetch-asc`
   - downloads latest application specific configurations
 
