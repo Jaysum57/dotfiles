@@ -1,11 +1,11 @@
-/* ============================================
-   ROOT VARIABLES (COLORS)
-   ============================================ */
+/* -------------------------------------------------------------------------- */
+/*                           ROOT VARIABLES (COLORS)                          */
+/* -------------------------------------------------------------------------- */
 :root {
     --background-color: rgba(0, 0, 0, 0.7);
     --foreground-color: rgb(237, 238, 240);
     --accent-color: #FF8000;
-    --border-color: rgb(63, 63, 63);
+    --border-color: #ffffff;
     --icon-color: rgb(169, 174, 184);
     --icon-hover: rgba(169, 174, 184, 0.8);
     --hover-color: rgba(54, 54, 54, 0.8);
@@ -13,13 +13,13 @@
     --inactive-color: rgba(63, 69, 75, 0.5);
 }
 
-/* ============================================
-   BASE STYLES
-   ============================================ */
+/* -------------------------------------------------------------------------- */
+/*                                 BASE STYLES                                */
+/* -------------------------------------------------------------------------- */
 * {
     font-size: 12px;
     color: var(--foreground-color);
-    font-weight: 600;
+    font-weight: 800;
     font-family: "JetBrainsMono NFP";
     margin: 0;
     padding: 0;
@@ -29,7 +29,7 @@
 /* --- Yasb Bar --- */
 .yasb-bar {
     background-color: var(--background-color);
-    border-radius: 8px;
+    border-radius: 10px;
     border: 1px solid var(--border-color);
     padding: 0px 10px;
 }
@@ -53,16 +53,15 @@
     padding: 0px 2px;
 }
 
-.container-center > * > * {
-    margin: 0px 6px;
+/* --- Container Styles --- */
+.container-left * , 
+.container-right *  {
+    margin: 0 2px;
 }
+
 
 .container-right .widget .icon:hover {
     color: var(--icon-hover);
-}
-
-.container-right * {
-    margin: 0 2px;
 }
 
 
@@ -82,8 +81,6 @@
 
 /* --- Workspace and Layout Containers --- */
 .apps-widget .widget-container,
-.komorebi-workspaces .widget-container,
-.komorebi-active-layout .widget-container,
 .glazewm-workspaces .widget-container,
 .glazewm-tiling-direction .widget-container {
     background-color: var(--background-color);
@@ -92,11 +89,9 @@
     border: 1px solid var(--border-color);
 }
 
-/* ============================================
-   WIDGETS - APPS
-   ============================================ */
-
-/* --- Apps Widget --- */
+/* -------------------------------------------------------------------------- */
+/*                             Applications Widget                            */
+/* -------------------------------------------------------------------------- */
 .apps-widget {
     padding: 0 4px 0 2px;
 }
@@ -111,140 +106,39 @@
     color: var(--foreground-color);
 }
 
-/* ============================================
-   WIDGETS - KOMOREBI
-   ============================================ */
+/* -------------------------------------------------------------------------- */
+/*                                  KOMOREBI                                  */
+/* -------------------------------------------------------------------------- */
 
-/* --- Komorebi Workspaces --- */
+/*  Style for widget. */
 .komorebi-workspaces {
-    padding: 0 5px;
+    /* background-color: blue; */
+    margin: 0 5px;
+    padding: 0;
 }
 
-.komorebi-workspaces .offline-status {
-    color: var(--foreground-color);
-    font-size: 12px;
-    font-weight: 600;
-}
+/* Style for widget container.  */
+/* .komorebi-workspaces .widget-container { } */
 
 .komorebi-workspaces .ws-btn {
-    /* color: transparent; */
-    width: 10px;
-    height: 10px;
-    background-color: var(--active-color);
-    border-radius: 5px;
-    margin: 0 2px;
-    font-size: 1px;
-}
-
-.komorebi-workspaces .ws-btn:hover {
-    color: var(--accent-color);
-    background-color: var(--hover-color);
-}
-
-.komorebi-workspaces .ws-btn.populated {
-    width: 10px;
-    height: 10px;
-    background-color: var(--active-color);
-    border-radius: 5px;
-    margin: 0 2px;
-    font-size: 1px;
-}
+    width: 24px;
+    height: 24px;
+    background-color: transparent;
+    border-radius: 3px;
+} /*Style for buttons.*/
 
 .komorebi-workspaces .ws-btn.active {
-    color: transparent;
-    background-color: var(--icon-color);
-    width: 36px;
-    height: 10px;
-    border-radius: 5px;
-}
-
-/* --- Komorebi Active Layout --- */
-.komorebi-active-layout {
-    padding: 0 4px;
-}
-
-.komorebi-active-layout .label {
-    font-weight: 600;
-    padding-bottom: 2px;
-}
-
-/* ============================================
-   WIDGETS - GLAZEWM
-   ============================================ */
-
-/* --- GlazeWM Workspaces --- */
-.glazewm-workspaces {
-    padding: 0;
-}
-
-.glazewm-workspaces .offline-status {
-    color: var(--foreground-color);
-    font-size: 12px;
-    padding: 0 4px;
-    font-weight: 600;
-}
-
-.glazewm-workspaces .ws-btn {
-    color: transparent;
-    width: 10px;
-    height: 10px;
-    background-color: var(--active-color);
-    border-radius: 5px;
-    margin: 0 2px;
-    font-size: 1px;
-}
-
-.glazewm-workspaces .ws-btn:hover {
-    color: var(--accent-color);
-    background-color: var(--hover-color);
-}
-
-.glazewm-workspaces .ws-btn.populated {
-    width: 10px;
-    height: 10px;
-    background-color: var(--active-color);
-    border-radius: 5px;
-    margin: 0 2px;
-    font-size: 1px;
-}
-
-.glazewm-workspaces .ws-btn.active_populated,
-.glazewm-workspaces .ws-btn.active_empty {
-    color: transparent;
-    background-color: var(--icon-color);
-    width: 36px;
-    height: 10px;
-    border-radius: 5px;
-}
-
-/* --- GlazeWM Tiling Direction --- */
-.glazewm-tiling-direction {
-    background-color: transparent;
-    padding: 0;
-    margin: 4px 0;
-}
-
-.glazewm-tiling-direction .btn {
-    font-size: 14px;
-    width: 14px;
-    padding: 0 4px 0 12px;
-    color: var(--foreground-color);
-    border: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 2px;
-}
-
-.glazewm-tiling-direction .btn:hover {
-    background-color: var(--hover-color);
-}
+    background-color: var(--foreground-color);
+    color: black;
+} /*Style for the active workspace button.*/
 
 /* ============================================
    WIDGETS - SYSTEM INFO
    ============================================ */
 
-/* --- Uptime Widget --- */
+/* -------------------------------------------------------------------------- */
+/*                                Uptime Widget                               */
+/* -------------------------------------------------------------------------- */
 .uptime {
     font-size: 14px;
     margin-bottom: 10px;
@@ -252,38 +146,40 @@
     font-weight: 600;
 }
 
-/* --- Volume Widget --- */
-.volume-widget {
-    margin-right: 5px; 
-}
+/* -------------------------------------------------------------------------- */
+/*                                Volume Widget                               */
+/* -------------------------------------------------------------------------- */
+
+/* .volume-widget {} */
 
 .volume-widget .icon {
     color: var(--foreground-color);
     margin: 1px 2px 0 0;
 }
 
-/* --- Battery Widget --- */
-
+/* -------------------------------------------------------------------------- */
+/*                               Battery Widget                               */
+/* -------------------------------------------------------------------------- */
 .battery-widget .icon {
     /* margin-right: 6px; */ 
     color: var(--foreground-color);
 }
 
-/* --- Brightness Widget --- */
-/* PROBLEMATIC SPACING */
+
+/* ---------------------------- Brightness Widget --------------------------- */
 .brightness-widget .widget-container {
     padding: 0px;
-    /* margin: 0 -8px; */
-    /* background-color: red; */
 }
 
 .brightness-widget .icon {
     color: var(--foreground-color);
     margin: 0px;
+    font-size: 14px;
+    font-family: "JetBrainsMono NFP";
+
 }
 
-
-/* --- Weather Widget --- */
+/* ----------------------------- Weather Widget ----------------------------- */
 .weather-widget {
     padding: 0 4px;
 }
@@ -299,10 +195,11 @@
 /* --- Power Menu Widget --- */
 
 .power-menu-widget {
-    padding-right: 5px;
+    /* padding-right: 5px; */
+    margin-bottom: 2px;
 }
 .power-menu-widget .label {
-    font-size: 13px;
+    font-size: 14px;
 }
 
 /* --- Power Menu Popup --- */
@@ -379,10 +276,10 @@
 
 /* --- WiFi Widget --- */
 .wifi-widget {
-    /* padding: 0 5px; */
-    /* margin: 0 0 0 5px; */
+    padding: 0;
+    margin: 0;
+    /* background-color: red; */
 }
-
 .wifi-widget .icon {
     color: var(--foreground-color);
     margin: 0;
@@ -527,35 +424,37 @@
     border-radius: 4px;
 }
 
-/* ============================================
-   WIDGETS - WALLPAPERS
-   ============================================ */
+/* -------------------------------------------------------------------------- */
+/*                              Wallpaper Widget                              */
+/* -------------------------------------------------------------------------- */
 
-/* --- Wallpapers Widget --- */
 .wallpapers-widget .icon {
     color: var(--foreground-color);
     font-size: 14px;
     margin: 0;
 }
 
-/* --- Taskbar Widget --- */
+/* -------------------------------------------------------------------------- */
+/*                               Taskbar Widget                               */
+/* -------------------------------------------------------------------------- */
+
+.taskbar-widget * {
+    filter: invert(1) grayscale(1);
+}
 
 .taskbar-widget {
     padding: 0;
     margin: 0;
     border: none;
 }
-
-.taskbar-widget .widget-container {
-    border: none;
-    margin: 0;
-    padding: 0 5px;
-}
+.taskbar-widget .widget-container { 
+    margin: 0 3px;
+} /* Container for the widget */
 
 .taskbar-widget .app-container {
-    padding: 0 9px;
+    padding: 0;
+    margin: 0 6px;
     border: none;
-    margin: 0;
 }
 
 .taskbar-widget .app-container:hover {
@@ -565,6 +464,31 @@
 .taskbar-widget .app-container .app-title {
     padding-left: 4px;
 }
+
+
+/* Application containers */
+
+.taskbar-widget .app-container.foreground {
+} /* container for the focused app */
+
+.taskbar-widget .app-container.flashing {} /* flashing container for the app (window is flashing) */
+
+.taskbar-widget .app-container.running {
+} /* container for running apps (not focused) */
+
+.taskbar-widget .app-container .app-icon {
+} /* Icon inside the container */
+
+.taskbar-widget .app-container .app-title {} /* Label inside the container */
+/* Taskbar preview popup is very limited in styling options, do not use margins/paddings here */
+.taskbar-preview {}
+.taskbar-preview .header {}
+.taskbar-preview .header .title {}
+
+
+
+
+
 /* --- Whkd Widget --- */
 .whkd-widget {
     padding: 0 6px 0 6px;
@@ -574,6 +498,9 @@
     font-size: 14px;
     color: var(--foreground-color);
 }
+
+
+
 
 /* --- Wallpapers Gallery --- */
 .wallpapers-gallery-window {
@@ -639,9 +566,9 @@
     padding-left: 4px;
 }
 
-/* ============================================
-   WIDGETS - WHKD
-   ============================================ */
+/* -------------------------------------------------------------------------- */
+/*                                    WHKD                                    */
+/* -------------------------------------------------------------------------- */
 
 /* --- Whkd Widget --- */
 .whkd-widget {
@@ -694,11 +621,17 @@
 }
 
 /* --- Media Widget --- */
-/* 
 
+
+/* 
 .media-widget {}
 .media-widget .widget-container {}
-.media-widget .label {}
+*/
+.media-widget .label {
+    font-weight: 800;
+}
+
+/*
 .media-widget .label.alt {}
 .media-widget .btn.play {}
 .media-widget .btn.prev {}
@@ -709,25 +642,24 @@
 
 
 /* --- CPU Widget --- */
-.cpu-widget {
-    /* padding: 1px; */
-}
+/* .cpu-widget {
+    padding: 1px;
+} */
 
-.cpu-widget .widget-container .icon {
-    /* padding: 0px 4px; */
-}
+/* .cpu-widget .widget-container .icon {
+    padding: 0px 4px;
+} */
 
 
-/* --- Clock Widget --- */
+/* -------------------------------------------------------------------------- */
+/*                                Clock Widget                                */
+/* -------------------------------------------------------------------------- */
+
 /* .clock-widget {
     margin-left: 60px;
     color: var(--accent-color);
     background-color: var(--accent-color);
 }
-
-.container-center {
-    background-color: yellow;
-} */
 
 /* .clock-widget {
     margin-left: auto;
@@ -736,7 +668,43 @@
 .clock-widget .widget-container {
     margin-left: auto;
 }
+*/
+.clock-widget .widget-container .label {
+    font-weight: 800;
+}
 
-.media-widget .widget-container {
-    margin-right: 14px;
-} */
+
+/* -------------------------------------------------------------------------- */
+/*                            Active Window Widget                            */
+/* -------------------------------------------------------------------------- */
+
+/* .active-window-widget .your_class {} If you are using class_name option */
+/* .active-window-widget .widget-container .label.alt {} */
+/* .active-window-widget .widget-container .icon {} */
+
+.active-window-widget {
+    padding: 0;
+    margin: 0 7px;
+}
+
+.active-window-widget .widget-container {
+    padding: 0;
+    margin: 0;
+}
+
+.active-window-widget .widget-container .label {
+    padding: 0;
+    margin: 0;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                 User Widget                                */
+/* -------------------------------------------------------------------------- */
+
+.custom-widget .widget-container .label {
+    font-size: 16px;
+    padding-top: 3px;
+    /* letter-spacing: 1px; */
+    /* font-weight: bold; */
+    font-family: "Moderniz"; 
+}

@@ -26,7 +26,7 @@ bars:
       hide_on_fullscreen: true
     dimensions:
       width: "100%"
-      height: 36
+      height: 45 #36
     padding:
       top: 6
       left: 10
@@ -34,29 +34,43 @@ bars:
       right: 10
     widgets:
       left: [
-        "power_menu",
-        "komorebi_workspaces",
+        "user",
+        "clock",
+        "media",
         # "komorebi_active_layout",
-        "taskbar",
-        "active_window"
       ]
       center: [
-        "clock",
-        "apps",
-        "media",
+        # "apps",
+        # "taskbar",
+        "komorebi_workspaces",
+        "active_window",
       ]
       right: [
-        "cpu",
-        "gpu",
         # "systray", 
         # "wallpapers",
         # "weather",
+        "cpu",
+        "gpu",
         "brightness",
         "volume",
         "wifi",
-        "battery"
+        "battery",
+        "power_menu",
       ]
 widgets:
+  user:
+    type: "yasb.custom.CustomWidget"
+    options:
+      label: "\uedd2  {data}" #\ue683 \uedd2  
+      label_alt: "User: {data}"
+      callbacks:
+        on_left: "exec cmd.exe /c explorer.exe %USERPROFILE%"
+        on_right: "do_nothing"
+      class_name: "user"
+      exec_options:
+        use_shell: true
+        run_cmd: "echo %USERNAME%" 
+        return_format: "string"
   sysinfo:
     type: "yasb.grouper.GrouperWidget"
     options:
@@ -68,7 +82,7 @@ widgets:
   cpu:
     type: "yasb.cpu.CpuWidget"
     options:
-      label: "<span>\uf4bc</span> {info[percent][total]}%"
+      label: "cpu: {info[percent][total]}%"
       label_alt: "<span>\uf437</span> {info[histograms][cpu_percent]}"
       update_interval: 2000
       cpu_thresholds:
@@ -89,8 +103,8 @@ widgets:
   gpu:
     type: "yasb.gpu.GpuWidget"
     options:
-      label: "| {info[utilization]}%"
-      label_alt: "<span>\uf4bc</span> {info[temp]}°C | {info[mem_used]} / {info[mem_total]}"
+      label: "gpu: {info[utilization]}%"
+      label_alt: "gpu: [{info[temp]} \udb81\udd04 | {info[mem_used]} / {info[mem_total]}]"
       update_interval: 2000
       gpu_thresholds:
         low: 25
@@ -113,56 +127,10 @@ widgets:
     type: "komorebi.workspaces.WorkspaceWidget"
     options:
       label_offline: "\uf186 offline"
-      label_workspace_btn: " "
-      label_workspace_active_btn: " "
-      label_workspace_populated_btn: " "
-      label_default_name: " "
+      label_default_name: ""
       label_zero_index: false
-      hide_empty_workspaces: true 
-      hide_if_offline: false
-      animation: true
-      container_padding:
-        top: 0
-        left: 8
-        bottom: 0
-        right: 8
-  # komorebi_active_layout:
-  #   type: "komorebi.active_layout.ActiveLayoutWidget"
-  #   options:
-  #     hide_if_offline: true
-  #     label: "{icon}"
-  #     layouts: ['bsp', 'columns', 'grid', 'vertical_stack', 'horizontal_stack', 'ultrawide_vertical_stack']
-  #     layout_icons:
-  #       bsp: "[\\\\]"
-  #       columns: "[||]"
-  #       grid: "[G]"
-  #       vertical_stack: "[V]="
-  #       horizontal_stack: "[H]="
-  #       ultrawide_vertical_stack: "||="
-  #       monocle: "[M]"
-  #       maximised: "[X]"
-  #       floating: "><>"
-  #       paused: "[P]"
-  #     callbacks:
-  #       on_left: "next_layout"
-  #       on_middle: "toggle_monocle"
-  #       on_right: "prev_layout" 
-  #     container_padding: 
-  #       top: 0
-  #       left: 8
-  #       bottom: 0
-  #       right: 8 
-  # glazewm_workspaces:
-  #   type: "glazewm.workspaces.GlazewmWorkspacesWidget"
-  #   options:
-  #     offline_label: "GlazeWM Offline"
-  #     hide_empty_workspaces: true
-  #     hide_if_offline: true
-  # glazewm_tiling_direction:
-  #   type: "glazewm.tiling_direction.GlazewmTilingDirectionWidget"
-  #   options:
-  #     horizontal_label: "\udb81\udce1"
-  #     vertical_label: "\udb81\udce2"
+      hide_empty_workspaces: true
+      hide_if_offline: false 
   active_window:
     type: "yasb.active_window.ActiveWindowWidget"
     options:
@@ -252,7 +220,7 @@ widgets:
   brightness:
     type: "yasb.brightness.BrightnessWidget"
     options:
-      label: "<span>{icon} {percent}%</span>"
+      label: "{icon} {percent}%" 
       label_alt: "Brightness {percent}%"
       tooltip: true
       brightness_icons: [
@@ -263,11 +231,6 @@ widgets:
       ]       
       callbacks:
         on_left: "toggle_label"
-      container_padding:
-        top: 0
-        left: 8
-        bottom: 0
-        right: 8
   wifi:
     type: "yasb.wifi.WifiWidget"
     options:
@@ -313,7 +276,7 @@ widgets:
   power_menu:
     type: "yasb.power_menu.PowerMenuWidget"
     options:
-      label: "\ue62a"
+      label: "\udb81\udc25" #\ue62a
       uptime: True
       blur: False
       blur_background: False
@@ -341,35 +304,36 @@ widgets:
   media:
     type: "yasb.media.MediaWidget"
     options:
-      label: "{title} - {artist}"
+      label: "{title}"
+      label_alt: "{artist} - {title}"
       hide_empty: true
       callbacks:
         on_left: "toggle_play_pause"
         on_middle: "do_nothing"
-        on_right: "do_nothing"
+        on_right: "toggle_label"
       max_field_size:
-        label: 16
-      show_thumbnail: false
+        label: 30 
+      show_thumbnail: true
       controls_only: false
       controls_left: false
-      controls_hide: true
-      thumbnail_alpha: 90
-      thumbnail_padding: 10
+      controls_hide: true 
+      thumbnail_alpha: 50 
+      thumbnail_padding: 0
       icons:
         prev_track: "\udb81\udcae"
         next_track: "\udb81\udcad"
         play: "\udb81\udc0a"
         pause: "\udb80\udfe4"
       scrolling_label:
-        update_interval_ms: 80
-        enabled: true
-        style: "right"  # can be "left", "right", "bounce", "bounce-ease"
-        separator: "]  ["
+        update_interval_ms: 20
+        enabled: false 
+        style: "bounce-ease"  # can be "left", "right", "bounce", "bounce-ease"
+        # separator: "]  ["
         label_padding: 0
         # Easing curve params: https://www.desmos.com/calculator/j7eamemxzi
-        ease_slope: 80
-        ease_pos: 0.34
-        ease_min: 0.16
+        # ease_slope: 80
+        # ease_pos: 0.34
+        # ease_min: 0.16
   apps:
     type: "yasb.applications.ApplicationsWidget"
     options:
@@ -403,7 +367,7 @@ widgets:
     options:
       hide_empty: true
       tooltip: true
-      animation: true
+      animation: false 
       icon_size: 16
       ignore_apps:
         processes: []
