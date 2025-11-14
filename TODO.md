@@ -41,3 +41,56 @@
 
 **Windhawk**
 - `winget install --id=RamenSoftware.Windhawk  -e`
+
+
+
+
+## Checklist
+- [ ] ⭐**Zen Browser**
+	`winget install --id=Zen-Team.Zen-Browser  -e`
+
+- [ ] **Altsnap**
+	`winget install --id=AltSnap.AltSnap  -e`
+
+- [ ] ⭐Ohmyposh
+	- *with config*
+	``	
+- [ ] Playnite
+- [ ] ⭐Anki
+- [ ] Bloxstrap
+- [ ] Canva
+- [ ] Itchio
+- [ ] ⭐ShareX
+- [ ] Obsidian
+- [ ] Jdownloader2
+- [ ] ⭐Komorebi
+- [ ] ⭐Yasb
+- [ ] MPV (will not do)
+- [ ] ⭐Powertoys
+- [ ] Stremio
+- [ ] ⭐Yt-dlp
+- [ ] ⭐FFMPEG
+- [x] Pdfarranger
+- [ ] Wiztree
+- [x] Geek.exe
+- [x] ⭐BitwardenCLI
+- [x] ⭐Flow launcher
+- [ ] ⭐Everything
+- [ ] ⭐winrar
+- [ ] Proton VPN
+- [ ] VLC
+- [ ] Windhawk
+- [x] Legcord
+# Programming 
+
+- [ ] ⭐python 
+- [ ] lua
+- [ ] rust
+- [ ] Git
+- [ ] vscode
+- [ ] neovim
+
+# Games
+
+- [ ] Minecraft
+- [ ] 
