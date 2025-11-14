@@ -1,5 +1,6 @@
-# This repo contains my Windows dotfiles.
-
+<h1 align="center">
+    <a name="top" title="dotfiles">~/.&nbsp;📂</a><br/>Jaysum's dotfiles<br/>
+</h1>
 <p align="center">
   <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/Jaysum57/dotfiles">
 
