@@ -1,0 +1,267 @@
+{
+  "$schema": "https://raw.githubusercontent.com/LGUG2Z/komorebi/v0.1.38/schema.json",
+  "app_specific_configuration_path": "$Env:USERPROFILE/applications.json",
+  "window_hiding_behaviour": "Cloak",
+  "window_handling_behaviour":"Sync",
+  "cross_monitor_move_behaviour": "Insert",
+  "resize_delta": 200,
+  "mouse_follows_focus": false,
+  "default_workspace_padding": 10,
+  "default_container_padding": 4,
+  "float_rule_placement":"None",
+  "floating_layer_behaviour":"Float",
+  "floating_layer_placement":"None",
+  "floating_window_aspect_ratio": "Ultrawide",
+  "border": true,
+  "border_implementation":"Komorebi",
+  "border_width": 4,
+  "border_offset": -1,
+  "transparency": false, 
+  "transparency_alpha": 230,
+  "transparency_ignore_rules": [
+    {
+      "id": "vlc.exe",
+      "kind": "Exe",
+      "matching_strategy": "Contains"
+    }
+  ],
+  "border_colours": {
+      "single": "#ffffff",
+      "stack": "#ffffff",
+      "monocle": "#da9125",
+      "unfocused": "#3e3e3e00"
+  },
+  "animation": {
+    "enabled": true,
+    "duration": 40,
+    "fps": 120,
+    "style": {
+      "movement": "EaseInOutCubic" 
+    }
+  },
+  "stackbar": {
+    "height": 30,
+    "mode": "OnStack",
+    "label": "Process",
+    "tabs": {
+      "width": 140,
+      "font_size": 14,
+      "font_family": "JetBrainsMono NFP",
+      "background": "#0a0a0a",
+      "focused_text": "#ffffff",
+      "unfocused_text": "#888888"
+    }
+  },
+  "monitors": [
+    { 
+      "window_based_work_area_offset": {
+        "bottom": 100,
+        "left": 150,
+        "right": 300,
+        "top": 20 
+      },
+      "workspaces": [
+        {
+          "name": "1",
+          "layout": "BSP"
+        },
+        {
+          "name": "2",
+          "layout": "BSP" 
+        },
+        {
+          "name": "3",
+          "layout": "BSP"
+        },
+        {
+          "name": "4",
+          "layout": "BSP"
+        }
+      ]
+    }
+  ],
+  "border_overflow_applications": [
+    {
+      "id": "AnyDesk.exe",
+      "kind": "Exe",
+      "matching_strategy": "Contains"
+    }
+  ],
+  "tray_and_multi_window_applications": [
+    {
+      "id": "Copilot.exe",
+      "kind": "Exe",
+      "matching_strategy": "Contains"
+    },
+    {
+      "id": "Affinity.https://unduck.link?q=%sexe",
+      "kind": "Exe",
+      "matching_strategy": "Contains"
+    },
+    {
+      "id": "okular.exe",
+      "kind": "Exe",
+      "matching_strategy": "Contains"
+    }
+  ],
+  "floating_applications": [
+    {
+      "id": "Spotify.exe",
+      "kind": "Exe",
+      "matching_strategy": "Contains"
+    },
+    {
+      "id": "vlc.exe",
+      "kind": "Exe",
+      "matching_strategy": "Contains"
+    },
+    {
+      "id": "stremio.exe",
+      "kind": "Exe",
+      "matching_strategy": "Contains"
+    },
+    {
+      "id": "hexchat.exe",
+      "kind": "Exe",
+      "matching_strategy": "Contains"
+    },
+    {
+      "id": "Legcord.exe",
+      "kind": "Exe",
+      "matching_strategy": "Contains"
+    },
+    {
+      "id": "Discord.exe",
+      "kind": "Exe",
+      "matching_strategy": "Contains"
+    },
+    {
+      "id": "Playnite.DesktopApp.exe",
+      "kind": "Exe",
+      "matching_strategy": "Contains"
+    },
+    {
+      "id": "anki.exe",
+      "kind": "Exe",
+      "matching_strategy": "Contains"
+    },
+    {
+      "id": "scrcpy.exe",
+      "kind": "Exe",
+      "matching_strategy": "Contains"
+    },
+    {
+      "id": "Canva.exe",
+      "kind": "Exe",
+      "matching_strategy": "Contains"
+    }, 
+    {
+      "id": "python.exe",
+      "kind": "Exe",
+      "matching_strategy": "Contains"
+    },
+    {
+      "id": "WinRAR.exe",
+      "kind": "Exe",
+      "matching_strategy": "Contains"
+    },
+    {
+      "id": "ChatGPT.exe",
+      "kind": "Exe",
+      "matching_strategy": "Contains"
+    },
+    {
+      "id": "grass.exe",
+      "kind": "Exe",
+      "matching_strategy": "Equals"
+    },
+    {
+      "id": "ShareX.exe",
+      "kind": "Exe",
+      "matching_strategy": "Contains"
+    },
+    {
+      "id": "auth.exe",
+      "kind": "Exe",
+      "matching_strategy": "Contains"
+    },
+    {
+      "id": "obs64.exe",
+      "kind": "Exe",
+      "matching_strategy": "Contains"
+    },
+    {
+      "id": "JDownloader2.exe",
+      "kind": "Exe",
+      "matching_strategy": "Contains"
+    }
+
+  ],
+  "ignore_rules": [
+    {
+      "id": "pythonw.exe",
+      "kind": "Exe",
+      "matching_strategy": "Contains"
+    },
+    {
+      "id": "Flow.Launcher.exe",
+      "kind": "Exe",
+      "matching_strategy": "Contains"
+    },
+    {
+      "id": "RobloxPlayerBeta.exe",
+      "kind": "Exe",
+      "matching_strategy": "Contains"
+    },
+    {
+      "id": "dota2.exe",
+      "kind": "Exe",
+      "matching_strategy": "Contains"
+    },
+    {
+      "id": "xampp-control.exe",
+      "kind": "Exe",
+      "matching_strategy": "Contains"
+    },
+    {
+      "id": "ui32.exe",
+      "kind": "Exe",
+      "matching_strategy": "Contains"      
+    },
+    {
+      "id": "yasb.exe",
+      "kind": "Exe",
+      "matching_strategy": "Contains"
+    },
+    {
+      "id": "explorer.exe",
+      "kind": "Exe",
+      "matching_strategy": "Contains"
+    },
+    {
+      "id": "Everything.exe",
+      "kind": "Exe",
+      "matching_strategy": "Contains"
+    },
+    {
+      "id": "PhoneExperienceHost.exe",
+      "kind": "Exe",
+      "matching_strategy": "Contains"
+    },
+    {
+      "id": "QuickLook.exe",
+      "kind": "Exe",
+      "matching_strategy": "Contains"
+    }, 
+    {
+      "id": "parsecd.exe",
+      "kind": "Exe",
+      "matching_strategy": "Contains"
+    },
+    {
+      "id": "ApplicationFrameHost.exe",
+      "kind": "Exe",
+      "matching_strategy": "Contains"
+    }
+  ]
+}
