@@ -8,6 +8,19 @@
 
 </p>
 
+
+> [!WARNING]
+> This dotfiles repository is still under development. 
+
+
+## Prerequisites
+- Windows PowerShell 7
+- Git
+
+## Installation
+1. Clone the repository: `git clone https://github.com/Jaysum57/dotfiles.git`
+2. Run `Setup.ps1` as administrator
+
 ## What's inside?
 
 ### 📦 Package Managers
@@ -64,4 +77,4 @@
 ### 🎨 Themes
 
 **Black**
-![Black Theme](Themes/black@LAPTOP-STELLA/preview.png)
+![Black Theme](.config/yasb/black@LAPTOP-STELLA/preview.png)
