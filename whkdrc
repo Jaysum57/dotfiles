@@ -5,15 +5,17 @@
 alt + o                 : taskkill /f /im whkd.exe; Start-Process whkd -WindowStyle hidden # if shell is pwsh / powershell
 alt + shift + o         : komorebic reload-configuration
 
+alt + i                 : komorebic toggle-shortcuts
+
 # App shortcuts - these require shell to be pwsh / powershell
 # The apps will be focused if open, or launched if not open
-alt + shift + t 		: if ($wshell.AppActivate('Windows Terminal') -eq $False) { start wt }
-
-alt + z                 : if ($wshell.AppActivate('Zen') -eq $False) { start "C:\Program Files\Zen Browser\zen.exe" }
+# alt + f                 : if ($wshell.AppActivate('Firefox') -eq $False) { start firefox }
 # alt + b                 : if ($wshell.AppActivate('Chrome') -eq $False) { start chrome }
 
+alt + oem_comma         : start wt 
 alt + q                 : komorebic close
 alt + m                 : komorebic minimize
+alt + oem_period        : komorebic toggle-maximize
 
 # Focus windows
 alt + h                 : komorebic focus left
@@ -51,7 +53,7 @@ alt + shift + f         : komorebic toggle-monocle
 
 # Window manager options
 alt + shift + r         : komorebic retile
-alt + p                 : komorebic toggle-pause
+alt + u                 : komorebic toggle-pause
 
 # Layouts
 alt + x                 : komorebic flip-layout horizontal
