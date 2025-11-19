@@ -34,23 +34,25 @@ bars:
       right: 10
     widgets:
       left: [
+        "home",
         "user",
         "clock",
         "media",
+        "active_window",
         # "komorebi_active_layout",
       ]
       center: [
         # "apps",
         # "taskbar",
         "komorebi_workspaces",
-        "active_window",
       ]
       right: [
-        # "systray", 
+        "systray", 
         # "wallpapers",
         # "weather",
         "cpu",
         "gpu",
+        # "sysinfo",
         "brightness",
         "volume",
         "wifi",
@@ -58,10 +60,39 @@ bars:
         "power_menu",
       ]
 widgets:
+  home:
+    type: "yasb.home.HomeWidget"
+    options:
+      label: "<span>\uedd2</span>"
+      menu_list:
+      - { title: "User Home", path: "~" }
+      - { title: "Download", path: "D:\\Downloads" }
+      - { title: "Documents", path: "C:\\Users\\amn\\Documents" }
+      - { title: "Pictures", path: "C:\\Users\\amn\\Pictures" }
+      system_menu: true
+      power_menu: false 
+      blur: false 
+      round_corners: true
+      round_corners_type: "normal"
+      border_color: "System"
+      offset_top: 6
+      offset_left: 0
+      alignment: "left"
+      direction: "down"
+      menu_labels:
+        shutdown: "Shutdown"
+        restart: "Restart"
+        hibernate: "Hibernate"
+        logout: "Logout"
+        lock: "Lock"
+        sleep: "Sleep"
+        system: "System Settings"
+        about: "About This PC"
+        task_manager: "Task Manager"
   user:
     type: "yasb.custom.CustomWidget"
     options:
-      label: "\uedd2  {data}" #\ue683 \uedd2  
+      label: "{data}" #\ue683 \uedd2  
       label_alt: "User: {data}"
       callbacks:
         on_left: "exec cmd.exe /c explorer.exe %USERPROFILE%"
@@ -79,10 +110,16 @@ widgets:
         "cpu",
         "gpu"
       ]
+      collapse_options:
+        enabled: true
+        # exclude_widgets: ["battery"]  # Battery widget stays visible when collapsed
+        expanded_label: "\udb80\udf5b"
+        collapsed_label: "\udb80\udf5b"
+        label_position: "left"
   cpu:
     type: "yasb.cpu.CpuWidget"
     options:
-      label: "cpu: {info[percent][total]}%"
+      label: "cpu: {info[percent][total]}%" #:2.0f
       label_alt: "<span>\uf437</span> {info[histograms][cpu_percent]}"
       update_interval: 2000
       cpu_thresholds:
@@ -103,7 +140,7 @@ widgets:
   gpu:
     type: "yasb.gpu.GpuWidget"
     options:
-      label: "gpu: {info[utilization]}%"
+      label: "gpu: {info[utilization]}%" # :2.0f
       label_alt: "gpu: [{info[temp]} \udb81\udd04 | {info[mem_used]} / {info[mem_total]}]"
       update_interval: 2000
       gpu_thresholds:
@@ -220,7 +257,7 @@ widgets:
   brightness:
     type: "yasb.brightness.BrightnessWidget"
     options:
-      label: "{icon} {percent}%" 
+      label: "<span>{icon}</span> {percent}%" 
       label_alt: "Brightness {percent}%"
       tooltip: true
       brightness_icons: [
@@ -234,7 +271,7 @@ widgets:
   wifi:
     type: "yasb.wifi.WifiWidget"
     options:
-      label: "{wifi_icon} {wifi_name}"
+      label: "<span>{wifi_icon}</span> {wifi_name}"
       label_alt: "{wifi_name} {wifi_strength}%"
       update_interval: 5000
       callbacks:
@@ -293,14 +330,16 @@ widgets:
     type: "yasb.systray.SystrayWidget"
     options:
       class_name: "systray"
-      label_collapsed: "\udb80\udf5e"
-      label_expanded: "\udb80\udf5f"
-      label_position: "right"
-      icon_size: 16
-      pin_click_modifier: "alt"
-      show_unpinned: true
+      label_collapsed: "\udb80\udd43"
+      label_expanded: "\udb80\udd41"
+      label_position: "right" # Can be "left" or "right"
+      icon_size: 13 # Can be any integer between 8 and 64
+      pin_click_modifier: "shift" # Can be "ctrl", "alt" or "shift"
+      show_unpinned: false 
+      show_unpinned_button: true
       show_battery: false
       show_volume: false
+      show_network: false
   media:
     type: "yasb.media.MediaWidget"
     options:
@@ -308,32 +347,52 @@ widgets:
       label_alt: "{artist} - {title}"
       hide_empty: true
       callbacks:
-        on_left: "toggle_play_pause"
+        on_left: "toggle_play_pause" #toggle_media_menu 
         on_middle: "do_nothing"
         on_right: "toggle_label"
       max_field_size:
-        label: 30 
+        label: 20 
       show_thumbnail: true
       controls_only: false
       controls_left: false
       controls_hide: true 
-      thumbnail_alpha: 50 
-      thumbnail_padding: 0
+      thumbnail_alpha: 70 
+      thumbnail_padding: 20 
       icons:
         prev_track: "\udb81\udcae"
         next_track: "\udb81\udcad"
         play: "\udb81\udc0a"
         pause: "\udb80\udfe4"
       scrolling_label:
-        update_interval_ms: 20
         enabled: false 
-        style: "bounce-ease"  # can be "left", "right", "bounce", "bounce-ease"
+        update_interval_ms: 90 
+        style: "left"  # can be "left", "right", "bounce", "bounce-ease"
         # separator: "]  ["
         label_padding: 0
         # Easing curve params: https://www.desmos.com/calculator/j7eamemxzi
-        # ease_slope: 80
-        # ease_pos: 0.34
-        # ease_min: 0.16
+        ease_slope: 80
+        ease_pos: 0.34
+        ease_min: 0.16
+      media_menu:
+        blur: false
+        round_corners: true
+        round_corners_type: "normal"
+        border_color: "system"
+        alignment: "right"
+        direction: "down"
+        offset_top: 4 
+        offset_left: 150
+        thumbnail_size: 100
+        max_title_size: 60
+        max_artist_size: 20
+        show_volume_slider: false
+      media_menu_icons:
+        play: "\udb81\udc0c"       # Icon for the play button in the popup.
+        pause: "\udb80\udfe5"      # Icon for the pause button in the popup.
+        prev_track: "\udb81\ude63" # Icon for the previous track button in the popup.
+        next_track: "\udb81\ude61" # Icon for the next track button in the popup.
+        mute: "\udb81\udf5b"       # Icon for the mute button in the popup.
+        unmute: "\udb81\udf5a"     # Icon for the unmute button in the popup. 
   apps:
     type: "yasb.applications.ApplicationsWidget"
     options:
