@@ -26,7 +26,7 @@ bars:
       hide_on_fullscreen: true
     dimensions:
       width: "100%"
-      height: 45 #36
+      height: 39 #45 #36
     padding:
       top: 6
       left: 10
@@ -48,14 +48,14 @@ bars:
       ]
       right: [
         "systray", 
-        # "wallpapers",
-        # "weather",
         "cpu",
         "gpu",
-        # "sysinfo",
         "brightness",
-        "volume",
         "wifi",
+        # "wallpapers",
+        # "weather",
+        # "sysinfo",
+        # "volume",
         "battery",
         "power_menu",
       ]
@@ -111,15 +111,15 @@ widgets:
         "gpu"
       ]
       collapse_options:
-        enabled: true
-        # exclude_widgets: ["battery"]  # Battery widget stays visible when collapsed
+        enabled: true 
+        # exclude_widgets: [""]  # widget stays visible when collapsed
         expanded_label: "\udb80\udf5b"
         collapsed_label: "\udb80\udf5b"
         label_position: "left"
   cpu:
     type: "yasb.cpu.CpuWidget"
     options:
-      label: "cpu: {info[percent][total]}%" #:2.0f
+      label: "<span>\uf4bc</span>{info[percent][total]:2.0f}%" #:2.0f
       label_alt: "<span>\uf437</span> {info[histograms][cpu_percent]}"
       update_interval: 2000
       cpu_thresholds:
@@ -140,7 +140,7 @@ widgets:
   gpu:
     type: "yasb.gpu.GpuWidget"
     options:
-      label: "gpu: {info[utilization]}%" # :2.0f
+      label: "<span>\uf4b3</span>{info[utilization]:2.0f}%" # :2.0f
       label_alt: "gpu: [{info[temp]} \udb81\udd04 | {info[mem_used]} / {info[mem_total]}]"
       update_interval: 2000
       gpu_thresholds:
@@ -179,12 +179,38 @@ widgets:
       max_length: 30
       max_length_ellipsis: "..."
       monitor_exclusive: false
+#{%b %d | %I:%M %p}
   clock:
     type: "yasb.clock.ClockWidget"
     options:
-      label: "{%a, %d %b %I:%M %p}" # %H for 24-hour format %p for AM/PM %I for zero-padded hour
-      label_alt: "{%A, %d %B %Y %H:%M:%S}"
+      label: "{%b %d, %I:%M %p}"
+      label_alt: "\uf017 {%d-%m-%y %H:%M:%S}"
+      locale: ""
+      update_interval: 1000
       timezones: []
+      tooltip: false
+      calendar: 
+        blur: true
+        round_corners: true
+        round_corners_type: "normal"
+        border_color: "#ffffff"
+        alignment: "center"
+        direction: "down"
+        offset_top: 6
+        offset_left: 0
+        show_holidays: false
+        show_week_numbers: true
+        holiday_color: "#62a6ff"
+        extended: false 
+      callbacks:
+        on_left: "toggle_calendar"
+        on_middle: "do_nothing"
+        on_right: "next_timezone"
+      container_padding:
+        top: 0
+        left: 0
+        bottom: 0
+        right: 0
   weather:
     type: "yasb.weather.WeatherWidget"
     options:
@@ -224,7 +250,7 @@ widgets:
   volume:
     type: "yasb.volume.VolumeWidget"
     options:
-      label: "<span>{icon}</span> {level}"
+      label: "<span>{icon}</span>"
       label_alt: "{volume}"
       volume_icons:
         - "\ueee8"
@@ -239,6 +265,7 @@ widgets:
     options:
       label: "<span>{icon}</span> {percent}%"
       label_alt: "<span>{icon}</span> {percent}% | time: {time_remaining}"
+      hide_unsupported: True
       charging_options:
         icon_format: "{charging_icon}"
       status_thresholds:
@@ -257,21 +284,21 @@ widgets:
   brightness:
     type: "yasb.brightness.BrightnessWidget"
     options:
-      label: "<span>{icon}</span> {percent}%" 
-      label_alt: "Brightness {percent}%"
+      label: "<span>{icon}</span>{percent}%" 
+      label_alt: "<span>{icon}</span>{percent}%"
       tooltip: true
       brightness_icons: [
-        "\udb80\udcde",
-        "\udb80\udcdd",
-        "\udb80\udcdf",
-        "\udb80\udce0"
+        "\ue3d5",
+        "\ue3d0",
+        "\ue3ca",
+        "\ue3e3"
       ]       
       callbacks:
         on_left: "toggle_label"
   wifi:
     type: "yasb.wifi.WifiWidget"
     options:
-      label: "<span>{wifi_icon}</span> {wifi_name}"
+      label: "<span>\uf1eb</span>{wifi_name}"
       label_alt: "{wifi_name} {wifi_strength}%"
       update_interval: 5000
       callbacks:
@@ -313,7 +340,7 @@ widgets:
   power_menu:
     type: "yasb.power_menu.PowerMenuWidget"
     options:
-      label: "\udb81\udc25" #\ue62a
+      label: "<span>\udb81\udc25</span>" #\ue62a
       uptime: True
       blur: False
       blur_background: False
@@ -330,10 +357,10 @@ widgets:
     type: "yasb.systray.SystrayWidget"
     options:
       class_name: "systray"
-      label_collapsed: "\udb80\udd43"
-      label_expanded: "\udb80\udd41"
+      label_collapsed: "\uf07b"
+      label_expanded: "\uf07c"
       label_position: "right" # Can be "left" or "right"
-      icon_size: 13 # Can be any integer between 8 and 64
+      icon_size: 15 # Can be any integer between 8 and 64
       pin_click_modifier: "shift" # Can be "ctrl", "alt" or "shift"
       show_unpinned: false 
       show_unpinned_button: true
@@ -347,7 +374,7 @@ widgets:
       label_alt: "{artist} - {title}"
       hide_empty: true
       callbacks:
-        on_left: "toggle_play_pause" #toggle_media_menu 
+        on_left: toggle_media_menu #"toggle_play_pause"
         on_middle: "do_nothing"
         on_right: "toggle_label"
       max_field_size:
@@ -380,19 +407,19 @@ widgets:
         border_color: "system"
         alignment: "right"
         direction: "down"
-        offset_top: 4 
-        offset_left: 150
-        thumbnail_size: 100
+        offset_top: 10
+        offset_left: 85
+        thumbnail_size: 120
         max_title_size: 60
         max_artist_size: 20
-        show_volume_slider: false
+        show_volume_slider: true 
       media_menu_icons:
-        play: "\udb81\udc0c"       # Icon for the play button in the popup.
-        pause: "\udb80\udfe5"      # Icon for the pause button in the popup.
-        prev_track: "\udb81\ude63" # Icon for the previous track button in the popup.
-        next_track: "\udb81\ude61" # Icon for the next track button in the popup.
-        mute: "\udb81\udf5b"       # Icon for the mute button in the popup.
-        unmute: "\udb81\udf5a"     # Icon for the unmute button in the popup. 
+        play: "\udb81\udc0c"       
+        pause: "\udb80\udfe5"      
+        prev_track: "\udb81\ude63" 
+        next_track: "\udb81\ude61" 
+        mute: "\udb81\udf5a"       
+        unmute: "\udb81\udf5b"     
   apps:
     type: "yasb.applications.ApplicationsWidget"
     options:
