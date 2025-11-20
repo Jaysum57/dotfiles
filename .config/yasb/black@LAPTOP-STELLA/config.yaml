@@ -15,14 +15,14 @@ bars:
       position: "top"
       center: false
     blur_effect:
-      enabled: true 
+      enabled: true
       acrylic: false
       dark_mode: true
       round_corners: true
       border_color: None
     window_flags:
       always_on_top: true
-      windows_app_bar: true 
+      windows_app_bar: true
       hide_on_fullscreen: true
     dimensions:
       width: "100%"
@@ -34,44 +34,43 @@ bars:
       right: 10
     widgets:
       left: [
-        "home",
-        "user",
-        "clock",
-        "media",
-        "active_window",
-        # "komorebi_active_layout",
-      ]
+          "home",
+          "user",
+          "clock",
+          "media",
+          "active_window",
+          # "komorebi_active_layout",
+        ]
       center: [
-        # "apps",
-        # "taskbar",
-        "komorebi_workspaces",
-      ]
+          # "apps",
+          "komorebi_workspaces",
+        ]
       right: [
-        "systray", 
-        "cpu",
-        "gpu",
-        "brightness",
-        "wifi",
-        # "wallpapers",
-        # "weather",
-        # "sysinfo",
-        # "volume",
-        "battery",
-        "power_menu",
-      ]
+          "systray",
+          "brightness",
+          "volume",
+          "cpu",
+          "gpu",
+          "wifi",
+          # "wallpapers",
+          # "weather",
+          # "sysinfo",
+          "battery",
+          "power_menu",
+        ]
 widgets:
   home:
     type: "yasb.home.HomeWidget"
     options:
       label: "<span>\uedd2</span>"
       menu_list:
-      - { title: "User Home", path: "~" }
-      - { title: "Download", path: "D:\\Downloads" }
-      - { title: "Documents", path: "C:\\Users\\amn\\Documents" }
-      - { title: "Pictures", path: "C:\\Users\\amn\\Pictures" }
+        - { title: "User Home", path: "~" }
+        - { title: "Download", path: "~\\Downloads" }
+        - { title: "Documents", path: "~\\Documents" }
+        - { title: "Pictures", path: "~\\Pictures" }
       system_menu: true
-      power_menu: false 
-      blur: false 
+      power_menu: false
+      blur: false
       round_corners: true
       round_corners_type: "normal"
       border_color: "System"
@@ -92,26 +91,23 @@ widgets:
   user:
     type: "yasb.custom.CustomWidget"
     options:
-      label: "{data}" #\ue683 \uedd2  
-      label_alt: "User: {data}"
+      label: "{data}" #\ue683 \uedd2
+      label_alt: "user: {data}"
       callbacks:
-        on_left: "exec cmd.exe /c explorer.exe %USERPROFILE%"
+        on_left: "exec cmd.exe /c explorer.exe %userprofile%"
         on_right: "do_nothing"
       class_name: "user"
       exec_options:
-        use_shell: true
-        run_cmd: "echo %USERNAME%" 
+        run_cmd: "echo %username%"
         return_format: "string"
+        run_once: true
   sysinfo:
     type: "yasb.grouper.GrouperWidget"
     options:
       class_name: "sysinfo"
-      widgets: [
-        "cpu",
-        "gpu"
-      ]
+      widgets: ["cpu", "gpu"]
       collapse_options:
-        enabled: true 
+        enabled: true
         # exclude_widgets: [""]  # widget stays visible when collapsed
         expanded_label: "\udb80\udf5b"
         collapsed_label: "\udb80\udf5b"
@@ -167,29 +163,28 @@ widgets:
       label_default_name: ""
       label_zero_index: false
       hide_empty_workspaces: true
-      hide_if_offline: false 
+      hide_if_offline: false
   active_window:
     type: "yasb.active_window.ActiveWindowWidget"
     options:
       label: "[ {win[process][name]} ]"
       label_alt: "[class_name='{win[class_name]}' exe='{win[process][name]}' hwnd={win[hwnd]}]"
       label_no_window: ""
-      label_icon: false 
+      label_icon: false
       label_icon_size: 14
       max_length: 30
       max_length_ellipsis: "..."
       monitor_exclusive: false
-#{%b %d | %I:%M %p}
   clock:
     type: "yasb.clock.ClockWidget"
     options:
-      label: "{%b %d, %I:%M %p}"
+      label: "{%b %d, %I:%M %p}" #{%b %d | %I:%M %p}
       label_alt: "\uf017 {%d-%m-%y %H:%M:%S}"
       locale: ""
       update_interval: 1000
       timezones: []
       tooltip: false
-      calendar: 
+      calendar:
         blur: true
         round_corners: true
         round_corners_type: "normal"
@@ -201,7 +196,7 @@ widgets:
         show_holidays: false
         show_week_numbers: true
         holiday_color: "#62a6ff"
-        extended: false 
+        extended: false
       callbacks:
         on_left: "toggle_calendar"
         on_middle: "do_nothing"
@@ -227,7 +222,7 @@ widgets:
         on_left: "toggle_card"
         on_middle: "do_nothing"
         on_right: "toggle_label"
-      icons: 
+      icons:
         sunnyDay: "\ue30d"
         clearNight: "\ue32b"
         cloudyDay: "\udb81\udd99"
@@ -238,7 +233,7 @@ widgets:
         snowyIcyNight: "\udb81\udd98"
         blizzardDay: "\uebaa"
         default: "\uebaa"
-      weather_card: 
+      weather_card:
         blur: True
         round_corners: True
         round_corners_type: "normal"
@@ -250,7 +245,7 @@ widgets:
   volume:
     type: "yasb.volume.VolumeWidget"
     options:
-      label: "<span>{icon}</span>"
+      label: "<span>{icon}</span>{level}"
       label_alt: "{volume}"
       volume_icons:
         - "\ueee8"
@@ -284,21 +279,21 @@ widgets:
   brightness:
     type: "yasb.brightness.BrightnessWidget"
     options:
-      label: "<span>{icon}</span>{percent}%" 
+      label: "<span>{icon}</span>{percent}%"
       label_alt: "<span>{icon}</span>{percent}%"
       tooltip: true
       brightness_icons: [
-        "\ue3d5",
-        "\ue3d0",
-        "\ue3ca",
+        "\ue3d5", 
+        "\ue3d0", 
+        "\ue3ca", 
         "\ue3e3"
-      ]       
+      ]
       callbacks:
         on_left: "toggle_label"
   wifi:
     type: "yasb.wifi.WifiWidget"
     options:
-      label: "<span>\uf1eb</span>{wifi_name}"
+      label: "<span>\uf1eb</span> {wifi_name}" #
       label_alt: "{wifi_name} {wifi_strength}%"
       update_interval: 5000
       callbacks:
@@ -308,14 +303,14 @@ widgets:
       ethernet_label: "<span>{wifi_icon}</span>"
       ethernet_label_alt: "<span>{wifi_icon}</span>{ip_addr}"
       ethernet_icon: "\ueba9"
-      get_exact_wifi_strength: false  # Optional. Will require location access permission if true.
+      get_exact_wifi_strength: false # Optional. Will require location access permission if true.
       wifi_icons: [
-        "\udb82\udd2f",  # Icon for 0% strength
-        "\udb82\udd1f",  # Icon for 1-24% strength
-        "\udb82\udd22",  # Icon for 25-49% strength
-        "\udb82\udd25",  # Icon for 50-74% strength
-        "\udb82\udd28"   # Icon for 75-100% strength
-      ]
+          "\udb82\udd2f", # Icon for 0% strength
+          "\udb82\udd1f", # Icon for 1-24% strength
+          "\udb82\udd22", # Icon for 25-49% strength
+          "\udb82\udd25", # Icon for 50-74% strength
+          "\udb82\udd28", # Icon for 75-100% strength
+        ]
       menu_config:
         blur: true
         round_corners: true
@@ -325,18 +320,10 @@ widgets:
         direction: "down"
         offset_top: 6
         offset_left: 0
-        wifi_icons_secured: [
-          "\udb82\udd21",
-          "\udb82\udd24",
-          "\udb82\udd27",
-          "\udb82\udd2a",
-        ]
-        wifi_icons_unsecured: [
-          "\udb82\udd20",
-          "\udb82\udd23",
-          "\udb82\udd26",
-          "\udb82\udd29",
-        ]
+        wifi_icons_secured:
+          ["\udb82\udd21", "\udb82\udd24", "\udb82\udd27", "\udb82\udd2a"]
+        wifi_icons_unsecured:
+          ["\udb82\udd20", "\udb82\udd23", "\udb82\udd26", "\udb82\udd29"]
   power_menu:
     type: "yasb.power_menu.PowerMenuWidget"
     options:
@@ -357,12 +344,12 @@ widgets:
     type: "yasb.systray.SystrayWidget"
     options:
       class_name: "systray"
-      label_collapsed: "\uf07b"
-      label_expanded: "\uf07c"
+      label_collapsed: "\uf078" #\uf07b/c - folder icon
+      label_expanded: "\uf053"
       label_position: "right" # Can be "left" or "right"
       icon_size: 15 # Can be any integer between 8 and 64
       pin_click_modifier: "shift" # Can be "ctrl", "alt" or "shift"
-      show_unpinned: false 
+      show_unpinned: false
       show_unpinned_button: true
       show_battery: false
       show_volume: false
@@ -374,26 +361,26 @@ widgets:
       label_alt: "{artist} - {title}"
       hide_empty: true
       callbacks:
-        on_left: toggle_media_menu #"toggle_play_pause"
+        on_left: "toggle_media_menu"
         on_middle: "do_nothing"
-        on_right: "toggle_label"
+        on_right: "toggle_play_pause" #"toggle_label"
       max_field_size:
-        label: 20 
+        label: 20
       show_thumbnail: true
       controls_only: false
       controls_left: false
-      controls_hide: true 
-      thumbnail_alpha: 70 
-      thumbnail_padding: 20 
+      controls_hide: true
+      thumbnail_alpha: 100
+      thumbnail_padding: 20
       icons:
         prev_track: "\udb81\udcae"
         next_track: "\udb81\udcad"
         play: "\udb81\udc0a"
         pause: "\udb80\udfe4"
       scrolling_label:
-        enabled: false 
-        update_interval_ms: 90 
-        style: "left"  # can be "left", "right", "bounce", "bounce-ease"
+        enabled: false
+        update_interval_ms: 90
+        style: "left" # can be "left", "right", "bounce", "bounce-ease"
         # separator: "]  ["
         label_padding: 0
         # Easing curve params: https://www.desmos.com/calculator/j7eamemxzi
@@ -412,14 +399,14 @@ widgets:
         thumbnail_size: 120
         max_title_size: 60
         max_artist_size: 20
-        show_volume_slider: true 
+        show_volume_slider: true
       media_menu_icons:
-        play: "\udb81\udc0c"       
-        pause: "\udb80\udfe5"      
-        prev_track: "\udb81\ude63" 
-        next_track: "\udb81\ude61" 
-        mute: "\udb81\udf5a"       
-        unmute: "\udb81\udf5b"     
+        play: "\udb81\udc0c"
+        pause: "\udb80\udfe5"
+        prev_track: "\udb81\ude63"
+        next_track: "\udb81\ude61"
+        mute: "\udb81\udf5a"
+        unmute: "\udb81\udf5b"
   apps:
     type: "yasb.applications.ApplicationsWidget"
     options:
@@ -434,7 +421,11 @@ widgets:
         - { icon: "\uf002", launch: "search" }
         - { icon: "\uf437", launch: "cmd /c Taskmgr" }
         - { icon: "\uf489", launch: "wt", name: "Windows Terminal" }
-        - { icon: "\ueb01", launch: "C:\\Program Files\\Zen Browser\\zen.exe", name: "Zen Browser" }
+        - {
+            icon: "\ueb01",
+            launch: "C:\\Program Files\\Zen Browser\\zen.exe",
+            name: "Zen Browser",
+          }
   github:
     type: "yasb.github.GithubWidget"
     options:
@@ -448,31 +439,15 @@ widgets:
       menu_height: 400
       menu_offset: 240
       update_interval: 60
-  taskbar:
-    type: "yasb.taskbar.TaskbarWidget"
-    options:
-      hide_empty: true
-      tooltip: true
-      animation: false 
-      icon_size: 16
-      ignore_apps:
-        processes: []
-        titles: []
-        classes: []
-      container_padding:
-        top: 0
-        left: 0
-        bottom: 0
-        right: 0
   wallpapers:
     type: "yasb.wallpapers.WallpapersWidget"
     options:
       label: "<span>\uf03e</span>"
       image_path: "C:\\Wallpapers"
-      change_automatically: false 
-      update_interval: 60 
+      change_automatically: false
+      update_interval: 60
       gallery:
-        enabled: true 
+        enabled: true
         blur: true
         image_width: 220
         image_per_page: 8
