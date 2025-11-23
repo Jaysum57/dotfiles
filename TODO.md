@@ -94,3 +94,8 @@
 
 - [ ] Minecraft
 - [ ] 
+
+
+# For consideration:
+
+[JPEGview](https://sourceforge.net/projects/jpegview/) - Fastest image viewer I've encountered.
