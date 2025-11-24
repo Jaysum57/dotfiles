@@ -220,7 +220,8 @@ function New-YasbTheme {
                 $themeName = $themeName.Substring(0, $themeName.Length - 1)
                 Write-Host "`b `b" -NoNewline
             }
-        } else {
+        }
+        else {
             $themeName += $key.Character
             Write-Host $key.Character -NoNewline
         }
@@ -305,6 +306,40 @@ function Remove-YasbTheme {
 
 <#
 .SYNOPSIS
+    Resets YASB to default configuration and clears cache.
+
+.DESCRIPTION
+    Runs the 'yasbc reset' command to restore default config files and clear the cache. 
+    Requires user confirmation before proceeding.
+
+.EXAMPLE
+    Reset-YasbConfig
+#>
+function Reset-YasbConfig {
+    
+    
+    try {
+        Write-Host "🔄 Resetting YASB configuration..." -ForegroundColor Cyan
+        Write-Host "⚠️  This will restore default config files and clear cache" -ForegroundColor Yellow
+        $confirm = Read-Host "Are you sure? (y/n)"
+       
+        if ($confirm -ne 'y') {
+            Write-Host "❌ Reset cancelled" -ForegroundColor Red
+            return
+        }
+      
+        yasbc reset
+        yasbc start
+     
+        Write-Host "✅ YASB configuration reset successfully!" -ForegroundColor Green
+    }
+    catch {
+        Write-Host "❌ Error resetting YASB: $_" -ForegroundColor Red
+    }
+}
+
+<#
+.SYNOPSIS
     Displays the main YASB Manager menu.
 
 .DESCRIPTION
@@ -321,6 +356,7 @@ function Get-YasbMenu {
     Write-Host "  2. Save Current Theme" -ForegroundColor Green
     Write-Host "  3. Create New Theme" -ForegroundColor Green
     Write-Host "  4. Delete Theme" -ForegroundColor Green
+    Write-Host "  5. Reset Configuration" -ForegroundColor Green
     Write-Host "  q. Quit" -ForegroundColor Green
     Write-Host ""
 }
@@ -337,10 +373,17 @@ function Get-YasbMenu {
 #>
 function Start-YasbThemeChanger {
     Clear-Host
+
+    if (-not (Get-Command yasbc -ErrorAction SilentlyContinue)) {
+        Write-Host "❌ 'yasbc' command not found. Please ensure YASB is installed and added to PATH." -ForegroundColor Red
+        return
+    }
+
     $exit = $false
+    
     while (-not $exit) {
         Get-YasbMenu
-        $choice = Read-Host "Enter choice (1-4) or 'q' to quit"
+        $choice = Read-Host "Enter choice (1-5) or 'q' to quit"
         
         switch ($choice) {
             'q' { $exit = $true }
@@ -382,6 +425,12 @@ function Start-YasbThemeChanger {
             '4' {
                 Clear-Host
                 Remove-YasbTheme
+                Start-Sleep -Seconds 2.5
+                Clear-Host
+            }
+            '5' {
+                Clear-Host
+                Reset-YasbConfig
                 Start-Sleep -Seconds 2.5
                 Clear-Host
             }
