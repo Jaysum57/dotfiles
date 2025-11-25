@@ -12,7 +12,6 @@ $ShowAsciiArt = $false
 #                                    Modules                                   #
 # ---------------------------------------------------------------------------- #
 Import-Module -Name Terminal-Icons
-Import-Module c:\Users\Jaysum\.config\PSYasbTheme
 
 Set-PSReadLineOption -PredictionSource HistoryAndPlugin -PredictionViewStyle ListView 
 
@@ -64,6 +63,18 @@ function nav {
         Write-Host "❌ Path not found: $Path" -ForegroundColor Red
     }
 }
+
+# ------------------------------- yazi function ------------------------------ #
+function y {
+    $tmp = (New-TemporaryFile).FullName
+    yazi $args --cwd-file="$tmp"
+    $cwd = Get-Content -Path $tmp -Encoding UTF8
+    if (-not [String]::IsNullOrEmpty($cwd) -and $cwd -ne $PWD.Path) {
+        Set-Location -LiteralPath (Resolve-Path -LiteralPath $cwd).Path
+    }
+    Remove-Item -Path $tmp
+}
+
 
 # ---------------------------------------------------------------------------- #
 #                                   ohmyposh                                   #
