@@ -7,6 +7,9 @@
 ╺┻┛┗━┛ ╹ ╹  ╹┗━╸┗━╸┗━┛
 
 This setup script is a fork from Scott McKendry's windots repository.         
+
+NOTE: Elevated permissions are required to create symbolic links.      
+      Run PowerShell as Administrator to execute this script.
 #>
 
 
@@ -15,7 +18,8 @@ This setup script is a fork from Scott McKendry's windots repository.
 
 # Linked Files (Destination => Source)
 $symlinks = @{
-  $PROFILE.CurrentUserAllHosts                                                                    = ".\Profile.ps1"
+  $PROFILE                                                                                        = ".\Microsoft.PowerShell_profile.ps1"
+  "$HOME\.config\yasb"                                                                            = ".\yasb\"  
   "$HOME\AppData\Local\nvim"                                                                      = ".\nvim"
   "$HOME\AppData\Local\fastfetch"                                                                 = ".\fastfetch"
   "$HOME\AppData\Local\k9s"                                                                       = ".\k9s"
@@ -23,40 +27,67 @@ $symlinks = @{
   "$HOME\.gitconfig"                                                                              = ".\.gitconfig"
   "$HOME\AppData\Roaming\lazygit"                                                                 = ".\lazygit"
   "$HOME\AppData\Roaming\AltSnap\AltSnap.ini"                                                     = ".\altsnap\AltSnap.ini"
-  "$ENV:PROGRAMFILES\WezTerm\wezterm_modules"                                                     = ".\wezterm\"
+  "$HOME\AppData\Roaming\yazi\config"                                                             = ".\yazi\config"
 }
 
-# Winget & choco dependencies
+# Winget dependencies
+
+## Tentative Winget packages
+# * "sst.opencode" - opencode is an AI coding agent built for the terminal.
+# * "ezwinports.make" - ezwinports Ports of Unix and GNU software to MS-Windows 
+# * "kitware.cmake" - CMake is an open-source, cross-platform family of tools designed to build, test and package software
+# * "eza-community.eza" - eza is a modern replacement for ls written in Rust
+
 $wingetDeps = @(
   "chocolatey.chocolatey"
-  "eza-community.eza"
-  "ezwinports.make"
   "fastfetch-cli.fastfetch"
   "git.git"
   "github.cli"
-  "kitware.cmake"
-  "mbuilov.sed"
   "microsoft.powershell"
   "neovim.neovim"
   "openjs.nodejs"
-  "sst.opencode"
   "starship.starship"
   "task.task"
 )
+
+# Chocolatey dependencies
+
 $chocoDeps = @(
   "altsnap"
   "bat"
-  "fd"
-  "fzf"
-  "gawk"
   "lazygit"
-  "mingw"
   "nerd-fonts-jetbrainsmono"
-  "ripgrep"
   "sqlite"
-  "wezterm"
   "zig"
-  "zoxide"
+)
+
+# ! SCOOP INSTALLATION STEPS !
+# Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+# Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
+
+# `scoop bucket add extras`
+# this adds the extras bucket which contains some of the packages we want
+
+# Scoop dependencies
+# TODO:
+# * WRITE SCOOP INSTALLATION LOGIC 
+# * MAKE SYMLINK FOR YAZI CONFIG IN ~\.config\yazi
+# * ADD FFMPEG TO ENV PATH
+
+$scoopDeps = @(
+  "extras/windhawk"
+  "extras/pipes-rs"
+  "yazi"   
+  "ffmpeg" 
+  "7zip" 
+  "jq" 
+  "poppler" 
+  "fd" 
+  "ripgrep" 
+  "fzf" 
+  "zoxide" 
+  "resvg" 
+  "imagemagick"
 )
 
 # PS Modules
@@ -67,6 +98,16 @@ $psModules = @(
   "ps-color-scripts"
 )
 
+
+# Set custom Yazi config path
+# Set the persistent User environment variable
+[Environment]::SetEnvironmentVariable(
+    "YAZI_CONFIG_HOME",
+    "$env:USERPROFILE\.config\yazi",
+    "User"
+)
+
+Write-Host "Set YAZI_CONFIG_HOME to $YaziCustomConfigPath for the current user."
 # Set working directory
 Set-Location $PSScriptRoot
 [Environment]::CurrentDirectory = $PSScriptRoot
@@ -101,11 +142,16 @@ foreach ($psModule in $psModules) {
 }
 
 # Persist Environment Variables
-[System.Environment]::SetEnvironmentVariable('WEZTERM_CONFIG_FILE', "$PSScriptRoot\wezterm\wezterm.lua", [System.EnvironmentVariableTarget]::User)
+# [System.Environment]::SetEnvironmentVariable('WEZTERM_CONFIG_FILE', "$PSScriptRoot\wezterm\wezterm.lua", [System.EnvironmentVariableTarget]::User)
+[System.Environment]::SetEnvironmentVariable('YAZI_FILE_ONE', "C:\Program Files\Git\usr\bin\file.exe", [System.EnvironmentVariableTarget]::User)
+
 
 $currentGitEmail = (git config --global user.email)
 $currentGitName = (git config --global user.name)
 
+
+# TODO: 
+# * Ensure that the target directories exist before creating symlinks
 # Create Symbolic Links
 Write-Host "Creating Symbolic Links..."
 foreach ($symlink in $symlinks.GetEnumerator()) {
