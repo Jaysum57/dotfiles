@@ -10,7 +10,10 @@
 
 
 > [!WARNING]
-> This dotfiles repository is still under development. 
+> ### 🚧 Under Active Development 🚧
+> _Expect Breaking Changes_
+> 
+> This repository is still in its early development/refactoring phase. I am still working on major structural improvements, and changes that break backward compatibility will occur frequently. 
 
 
 ## Prerequisites
@@ -88,5 +91,5 @@
 
 ### 🎨 Themes
 
-**Black**
-![Black Theme](.config/yasb/black@LAPTOP-STELLA/preview.png)
+#### **Black**
+![Black Theme](./yasb/black@LAPTOP-STELLA/preview.png)
