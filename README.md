@@ -13,7 +13,7 @@
 > ### 🚧 Under Active Development 🚧
 > _Expect Breaking Changes_
 > 
-> This repository is still in its early development/refactoring phase. I am still working on major structural improvements, and changes that break backward compatibility will occur frequently. 
+> This repository is still in its early development/refactoring phase. I am still working on major structural improvements, and changes may break backward compatibility frequently. 
 
 
 ## Prerequisites
