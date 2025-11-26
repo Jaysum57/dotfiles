@@ -1,95 +1,115 @@
 <h1 align="center">
     <a name="top" title="dotfiles">~/.&nbsp;📂</a><br/>Jaysum's dotfiles<br/>
 </h1>
+
 <p align="center">
   <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/Jaysum57/dotfiles">
-
   <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/Jaysum57/dotfiles">
-
 </p>
 
-
 > [!WARNING]
+>
 > ### 🚧 Under Active Development 🚧
+>
 > _Expect Breaking Changes_
-> 
-> This repository is still in its early development/refactoring phase. I am still working on major structural improvements, and changes may break backward compatibility frequently. 
+>
+> This repository is still in its early development/refactoring phase. I am still working on major structural improvements, and changes may break backward compatibility frequently.
+## Requirements
 
-
-## Prerequisites
 - Windows PowerShell 7
 - Git
 
 ## Installation
+
 1. Clone the repository: `git clone https://github.com/Jaysum57/dotfiles.git`
 2. Run `Setup.ps1` as administrator
+
+## 💻 System
+
+|       App        |      Description      |
+| :--------------: | :-------------------: |
+|   [Windows]()    |   Operating System    |
+|   [Komorebi]()   | Window Tiling Manager |
+|     [YASB]()     |      Status bar       |
+| [FlowLauncher]() |     App launcher      |
+|     [Zen]()      |   Browser (Firefox)   |
+|    [Helium]()    |  Browser (Chromium)   |
 
 ## What's inside?
 
 ### 📦 Package Managers
 
-| Tool | Description |
-|------|-------------|
-| [Chocolatey]() | Windows package manager for simplified software management |
-| [Scoop]() | Command-line installer for Windows with minimalist approach |
-| [Winget]() | Microsoft's official Windows Package Manager |
+|      Tool      |            Description             |
+| :------------: | :--------------------------------: |
+| [Chocolatey]() |    Windows package manager tool    |
+|   [Scoop]()    | Command-line installer for Windows |
+|   [Winget]()   |  Official Windows Package Manager  |
 
 ### 🎨 Desktop & UI
 
-| Tool | Description |
-|------|-------------|
-| [Altsnap]() | Window moving and tiling utility for Windows |
-| [Flow Launcher]() | Quick application launcher |
-| [Komorebi]() | Window management system for tiling window layouts |
-| [Powertoys]() | Advanced Windows productivity utilities |
-| [Windhawk]() | Customization tool for modifying Windows behavior |
-| [Yasb]() | Yet Another Status Bar for desktop customization |
+|     Tool      |        Description         |
+| :-----------: | :------------------------: |
+|  [Altsnap]()  |   Window moving utility    |
+| [Powertoys]() | Windows productivity tools |
+| [Windhawk]()  |     Windows GIU Tweaks     |
 
 ### 🎮 Gaming & Entertainment
 
-| Tool | Description |
-|------|-------------|
-| [Anki]() | Spaced repetition flashcard learning system |
-| [Bloxstrap]() | Bootstrap client for Roblox with enhanced features |
-| [Playnite]() | Game library manager and launcher |
-| [Stremio]() | Streaming media platform aggregator |
-| [Zen Browser]() | Privacy-focused web browser |
+|     Tool      |             Description              |
+| :-----------: | :----------------------------------: |
+| [Bloxstrap]() | Roblox client with enhanced features |
+| [Playnite]()  |  Game library manager and launcher   |
+|  [Stremio]()  | Streaming media platform aggregator  |
 
 ### 🛠️ Utilities
 
-| Tool | Description |
-|------|-------------|
-| [Bitwarden CLI]() | Command-line password manager interface |
-| [Everything]() | Ultra-fast file search utility |
-| [FFMPEG]() | Multimedia processing and conversion framework |
-| [Geek.exe]() | System information and hardware monitoring tool |
-| [JDownloader2]() | Download manager for streaming platforms |
-| [PDF Arranger]() | PDF manipulation and reordering tool |
-| [Proton VPN]() | Secure VPN service client |
-| [Winrar]() | Archive manager for compression and extraction |
-| [Wiztree]() | Disk space analysis and visualization tool |
-| [Yt-dlp]() | Video downloader for YouTube and other platforms |
-| [VLC]() | Multimedia player for audio and video files |
+|       Tool        |      Description      |
+| :---------------: | :-------------------: |
+| [Bitwarden CLI]() | CLI password manager  |
+|  [Everything]()   |     File Indexer      |
+|    [FFMPEG]()     | Multimedia processing |
+|   [Geek.exe]()    |      Uninstaller      |
+| [JDownloader2]()  |      Downloader       |
+| [PDF Arranger]()  |   PDF manipulation    |
+|  [Proton VPN]()   |          VPN          |
+|    [Winrar]()     |   Compression files   |
+|    [Wiztree]()    |  Disk space analyzer  |
+|    [Yt-dlp]()     |   Video Downloader    |
+|      [VLC]()      |     Media player      |
 
-### 📝 Productivity & Content
+### 📝 Productivity
 
-| Tool | Description |
-|------|-------------|
-| [Canva]() | Graphic design and content creation platform |
-| [Obsidian]() | Knowledge management and note-taking application |
+|     Tool     |       Description       |
+| :----------: | :---------------------: |
+|   [Anki]()   |  Spaced repetition app  |
+|  [Canva]()   | Graphic design platform |
+| [Obsidian]() | Note-taking application |
 
-### 💻 Languages & Development
+### 💻 Programming Languages
 
-| Tool | Description |
-|------|-------------|
-| [Git]() | Version control system for tracking code changes |
-| [Lua]() | Lightweight scripting language |
-| [Neovim]() | Modern fork of Vim text editor |
-| [Python]() | Versatile high-level programming language |
-| [Rust]() | Systems programming language focused on safety |
-| [VSCode]() | Feature-rich code editor by Microsoft |
+|    Tool    |      Description       |
+| :--------: | :--------------------: |
+|  [Lua]()   | Lightweight scripting  |
+| [Python]() | High-level programming |
+|  [Rust]()  | Safety-focused systems |
 
-### 🎨 Themes
+### 💻 CLI Tools
 
-#### **Black**
-![Black Theme](./yasb/black@LAPTOP-STELLA/preview.png)
+|     Tool      |    Description    |
+| :-----------: | :---------------: |
+|  [Neovim]()   |  Vim text editor  |
+|   [yazi]()    |   File manager    |
+| [ohmyposh]()  |   Shell promopt   |
+|    [fzf]()    |    File finder    |
+| [fastfetch]() |    System info    |
+|    [bat]()    | `cat` replacement |
+
+<!-- | []() | | -->
+
+## 🎨 Themes
+
+|      Name      |                        Preview                         |
+| :------------: | :----------------------------------------------------: |
+| <h3>Black</h3> | ![Black Theme](./yasb/black@LAPTOP-STELLA/preview.png) |
+
+<!-- | <h3></h3> || -->
