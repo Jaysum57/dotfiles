@@ -1,3 +1,4 @@
 [flavor]
-dark = "flexoki-dark"
-# dark = "rose-pine"
+# dark = "flexoki-dark"
+#dark = "rose-pine"
+dark = "catppuccin-mocha"

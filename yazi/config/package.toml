@@ -1,7 +1,9 @@
-[plugin]
-deps = []
-
 [[flavor.deps]]
 use = "Mintass/rose-pine"
 rev = "8343340"
 hash = "4db02f6957741233f6fadcc9d8dbcfac"
+
+[[flavor.deps]]
+use = "yazi-rs/flavors:catppuccin-mocha"
+rev = "3edeb49"
+hash = "2970b92f06b9a1c60a0be8ec61759aea"
