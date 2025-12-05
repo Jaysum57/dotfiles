@@ -1,3 +1,6 @@
+# YASB Configuration Path
+$yasbPath = "$env:USERPROFILE\.config\yasb"
+
 <#
 .SYNOPSIS
     Retrieves all available YASB themes.
@@ -9,8 +12,6 @@
     Get-YasbTheme
 #>
 function Get-YasbTheme {
-    $yasbPath = "$env:USERPROFILE\.config\yasb"
-    
     if (-not (Test-Path $yasbPath)) {
         Write-Host "❌ Path not found: $yasbPath" -ForegroundColor Red
         return @()
@@ -35,7 +36,6 @@ function Get-YasbTheme {
 function Set-YasbTheme {
     param([string]$ThemeName)
     
-    $yasbPath = "$env:USERPROFILE\.config\yasb"
     $themePath = "$yasbPath\$ThemeName"
     $files = @('config.yaml', 'styles.css')
     
@@ -77,7 +77,6 @@ function Set-YasbTheme {
 function Set-Wallpaper {
     param([string]$ThemeName)
     
-    $yasbPath = "$env:USERPROFILE\.config\yasb"
     $wallsPath = "$yasbPath\$ThemeName\walls"
     $regPath = "HKCU:\Control Panel\Desktop"
     
@@ -115,9 +114,9 @@ function Set-Wallpaper {
     Shows all available themes in a formatted table with numbered selections.
 
 .EXAMPLE
-    Get-YasbThemeList
+    Show-YasbThemeList -YasbPath $yasbPath
 #>
-function Get-YasbThemeList {
+function Show-YasbThemeList {
     $themes = Get-YasbTheme
     
     if ($themes.Count -eq 0) {
@@ -143,10 +142,9 @@ function Get-YasbThemeList {
     Prompts the user to select a theme directory and backs up the current config.yaml and styles.css files to it.
 
 .EXAMPLE
-    Save-CurrentTheme
+    Save-CurrentTheme -YasbPath $yasbPath
 #>
 function Save-CurrentTheme {
-    $yasbPath = "$env:USERPROFILE\.config\yasb"
     $currentConfig = "$yasbPath\config.yaml"
     $currentStyles = "$yasbPath\styles.css"
     
@@ -161,7 +159,7 @@ function Save-CurrentTheme {
         return
     }
     
-    Get-YasbThemeList
+    Show-YasbThemeList
     $choice = Read-Host "Select theme directory to save into (1-$($themes.Count)) or 'q' to cancel"
     
     if ($choice -eq 'q') {
@@ -174,7 +172,7 @@ function Save-CurrentTheme {
         $targetPath = "$yasbPath\$selectedTheme"
         
         Clear-Host
-        Get-YasbThemeList
+        Show-YasbThemeList
         Write-Host "⚠️  This will overwrite config files in: $selectedTheme" -ForegroundColor Yellow
         $confirm = Read-Host "Are you sure? (y/n)"
         
@@ -205,41 +203,22 @@ function Save-CurrentTheme {
     Prompts for a theme name and creates a new directory in the themes folder for storing custom configurations.
 
 .EXAMPLE
-    New-YasbTheme
+    New-YasbTheme -YasbPath $yasbPath
 #>
 function New-YasbTheme {
-    $yasbPath = "$env:USERPROFILE\.config\yasb"
-    
-    Write-Host "Enter new theme name: " -NoNewline
-    $themeName = ""
-    while ($true) {
-        $key = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
-        if ($key.VirtualKeyCode -eq 13) { break }
-        if ($key.VirtualKeyCode -eq 8) {
-            if ($themeName.Length -gt 0) {
-                $themeName = $themeName.Substring(0, $themeName.Length - 1)
-                Write-Host "`b `b" -NoNewline
-            }
-        }
-        else {
-            $themeName += $key.Character
-            Write-Host $key.Character -NoNewline
-        }
-    }
-    Write-Host ""
-    
+    $themeName = Read-Host "Enter new theme name"
+    $themePath = "$yasbPath\$themeName"
+
     if ([string]::IsNullOrWhiteSpace($themeName)) {
         Write-Host "❌ Theme name cannot be empty" -ForegroundColor Red
         return
     }
-    
-    $themePath = "$yasbPath\$themeName"
-    
+
     if (Test-Path $themePath) {
         Write-Host "❌ Theme '$themeName' already exists" -ForegroundColor Red
         return
     }
-    
+
     try {
         New-Item -ItemType Directory -Path $themePath | Out-Null
         Write-Host "✅ Theme '$themeName' created successfully!" -ForegroundColor Green
@@ -258,18 +237,16 @@ function New-YasbTheme {
     Prompts the user to select a theme and permanently removes its directory after confirmation.
 
 .EXAMPLE
-    Remove-YasbTheme
+    Remove-YasbTheme -YasbPath $yasbPath
 #>
 function Remove-YasbTheme {
-    $yasbPath = "$env:USERPROFILE\.config\yasb"
-    
     $themes = Get-YasbTheme
     if ($themes.Count -eq 0) {
         Write-Host "⚠️  No themes found" -ForegroundColor Yellow
         return
     }
     
-    Get-YasbThemeList
+    Show-YasbThemeList
     $choice = Read-Host "Select theme to delete (1-$($themes.Count)) or 'q' to cancel"
     
     if ($choice -eq 'q') {
@@ -282,7 +259,7 @@ function Remove-YasbTheme {
         $themePath = "$yasbPath\$selectedTheme"
         
         Clear-Host
-        Get-YasbThemeList
+        Show-YasbThemeList
         Write-Host "⚠️  This will permanently delete: $selectedTheme" -ForegroundColor Yellow
         $confirm = Read-Host "Are you sure? (y/n)"
         
@@ -363,6 +340,37 @@ function Get-YasbMenu {
 
 <#
 .SYNOPSIS
+    Prompts user to select and load a YASB theme.
+
+.DESCRIPTION
+    Displays all available themes, allows user to select one, applies it, and sets wallpaper if available.
+
+.EXAMPLE
+    Invoke-YasbThemeLoad -YasbPath $yasbPath
+#>
+function Invoke-YasbThemeLoad {
+    Show-YasbThemeList
+    $themes = Get-YasbTheme
+    if ($themes.Count -eq 0) { return }
+    
+    $themeChoice = Read-Host "Enter choice (1-$($themes.Count)) or 'q' to cancel"
+    
+    if ($themeChoice -eq 'q') {
+        Write-Host "❌ Theme load cancelled" -ForegroundColor Red
+        return
+    }
+    
+    if ($themeChoice -match '^\d+$' -and $themeChoice -ge 1 -and $themeChoice -le $themes.Count) {
+        $selected = $themes[$themeChoice - 1]
+        if (Set-YasbTheme -ThemeName $selected) {
+            Write-Host "✅ Theme applied successfully!" -ForegroundColor Green
+            Set-Wallpaper -ThemeName $selected
+        }
+    }
+}
+
+<#
+.SYNOPSIS
     Launches the interactive YASB Theme Manager.
 
 .DESCRIPTION
@@ -379,34 +387,15 @@ function Start-YasbThemeChanger {
         return
     }
 
-    $exit = $false
-    
-    while (-not $exit) {
+    while ($true) {
         Get-YasbMenu
         $choice = Read-Host "Enter choice (1-5) or 'q' to quit"
         
         switch ($choice) {
-            'q' { $exit = $true }
+            'q' { return }
             '1' {
                 Clear-Host
-                Get-YasbThemeList
-                $themes = Get-YasbTheme
-                if ($themes.Count -eq 0) { continue }
-                
-                $themeChoice = Read-Host "Enter choice (1-$($themes.Count)) or 'q' to cancel"
-                
-                if ($themeChoice -eq 'q') {
-                    Clear-Host
-                    continue
-                }
-                
-                if ($themeChoice -match '^\d+$' -and $themeChoice -ge 1 -and $themeChoice -le $themes.Count) {
-                    $selected = $themes[$themeChoice - 1]
-                    if (Set-YasbTheme -ThemeName $selected) {
-                        Write-Host "✅ Theme applied successfully!" -ForegroundColor Green
-                        Set-Wallpaper -ThemeName $selected
-                    }
-                }
+                Invoke-YasbThemeLoad
                 Start-Sleep -Seconds 2.5
                 Clear-Host
             }
@@ -442,5 +431,7 @@ function Start-YasbThemeChanger {
         }
     }
 }
+
+
 
 Start-YasbThemeChanger
