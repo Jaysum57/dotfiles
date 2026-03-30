@@ -66,7 +66,7 @@
             },
             {
                 "background": "#0C0C0C",
-                "colorScheme": "Dimidium",
+                "colorScheme": "Django",
                 "commandline": "pwsh.exe -NoLogo",
                 "cursorShape": "filledBox",
                 "font": 
@@ -79,7 +79,7 @@
                 "hidden": false,
                 "icon": "C:\\Windows\\System32\\AccountHealthAssets\\MicrosoftLogo-100.png",
                 "name": "Main",
-                "opacity": 100,
+                "opacity": 80,
                 "scrollbarState": "hidden",
                 "startingDirectory": "%USERPROFILE%",
                 "tabTitle": "Jaysum",
@@ -134,6 +134,29 @@
             "selectionBackground": "#FFFFFF",
             "white": "#BABABA",
             "yellow": "#F2D42C"
+        },
+        {
+            "background": "#0B2F20",
+            "black": "#000000",
+            "blue": "#245032",
+            "brightBlack": "#323232",
+            "brightBlue": "#568264",
+            "brightCyan": "#CFFFD1",
+            "brightGreen": "#73DA70",
+            "brightPurple": "#FFFFFF",
+            "brightRed": "#FF943B",
+            "brightWhite": "#FFFFFF",
+            "brightYellow": "#FFFF94",
+            "cursorColor": "#336442",
+            "cyan": "#9DF39F",
+            "foreground": "#F8F8F8",
+            "green": "#41A83E",
+            "name": "Django",
+            "purple": "#F8F8F8",
+            "red": "#FD6209",
+            "selectionBackground": "#245032",
+            "white": "#FFFFFF",
+            "yellow": "#FFE862"
         },
         {
             "background": "#000000",
