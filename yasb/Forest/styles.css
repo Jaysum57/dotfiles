@@ -8,7 +8,7 @@
   --border-color: #8db27f;
   --icon-color: #8db27f;
   --icon-hover: rgba(169, 174, 184, 0.8);
-  --hover-color: rgba(123, 123, 123, 0.674);
+  --hover-color: #4e6546;
   --active-color: rgb(88, 95, 102);
   --inactive-color: rgba(63, 69, 75, 0.5);
 }
@@ -53,6 +53,29 @@
 
 .widget .icon:hover {
   color: var(--icon-hover);
+}
+
+.context-menu, .context-menu *{
+  background-color: var(--background-color);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  color: var(--icon-color);
+  padding: 6px 0;
+  font-size: 13px;
+  font-family: 'Segoe UI';
+  font-weight: 600;
+}
+
+.tooltip {
+    background-color: var(--background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--icon-color);
+    padding: 6px 12px;
+    font-size: 13px;
+    font-family: 'Segoe UI';
+    font-weight: 600;
+    margin-top: 4px;
 }
 
 /* ============================================
@@ -733,7 +756,7 @@ Example: "Windows Media" becomes "windows-media" */
   margin-left: 10px;
 }
 .media-menu .btn:hover {
-  color: white;
+  color: var(--hover-color);
   /* background-color: rgba(255, 255, 255, 0.1); */
 }
 .media-menu .btn.play {
@@ -744,7 +767,7 @@ Example: "Windows Media" becomes "windows-media" */
 }
 .media-menu .btn.disabled:hover,
 .media-menu .btn.disabled {
-  color: #4e525c;
+  color: #0000006e;
   background-color: rgba(0, 0, 0, 0);
 }
 
@@ -772,24 +795,24 @@ Example: "Windows Media" becomes "windows-media" */
   background: rgba(255, 255, 255, 0.2);
 }
 .media-menu .progress-slider::sub-page {
-  background: white;
+  background: var(--accent-color);
   border-radius: 3px;
   height: 4px;
 }
 
 .media-menu .app-volume-container {
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: var(--accent-color);
   padding: 8px 6px;
   border-radius: 16px;
   margin-left: 10px;
 }
 .media-menu .app-volume-container .volume-slider::groove {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--hover-color);
   width: 2px;
   border-radius: 3px;
 }
 .media-menu .app-volume-container .volume-slider::add-page {
-  background: white;
+  background: var(--hover-color);
   border-radius: 3px;
 }
 .media-menu .app-volume-container .volume-slider::groove:hover {
@@ -804,7 +827,7 @@ Example: "Windows Media" becomes "windows-media" */
 .media-menu .app-volume-container .mute-button,
 .media-menu .app-volume-container .unmute-button {
   font-size: 16px;
-  color: #ffffff;
+  color: var(--hover-color);
   font-family: "Segoe Fluent Icons";
   margin-top: 4px;
 }
