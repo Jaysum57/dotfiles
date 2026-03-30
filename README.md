@@ -111,5 +111,6 @@
 |      Name      |                        Preview                         |
 | :------------: | :----------------------------------------------------: |
 | <h3>Black</h3> | ![Black Theme](./yasb/black@LAPTOP-STELLA/preview.png) |
+|<h3>Forest</h3>| ![Forest Theme](./yasb/Forest/preview.jpg)|
 
 <!-- | <h3></h3> || -->
