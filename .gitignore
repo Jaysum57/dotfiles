@@ -2,6 +2,9 @@
 
 *.TagStudio
 
+yasb/config.yaml*
+yasb/styles.css*
 yasb.log
 
 Notes.md
+
