@@ -4,7 +4,7 @@ $env:PYTHONIOENCODING="utf-8"
 # ---------------------------------------------------------------------------- #
 #                                General config                                #
 # ---------------------------------------------------------------------------- #
-$ShowAsciiArt = $false
+$ShowAsciiArt = $true
 
 
 
@@ -12,20 +12,18 @@ $ShowAsciiArt = $false
 #                                    Modules                                   #
 # ---------------------------------------------------------------------------- #
 Import-Module -Name Terminal-Icons
-
 Set-PSReadLineOption -PredictionSource HistoryAndPlugin -PredictionViewStyle ListView 
 
 
 # ---------------------------------------------------------------------------- #
 #                                    Scripts                                   #
 # ---------------------------------------------------------------------------- #
-winfetch
+#winfetch
 
 
 # ---------------------------------------------------------------------------- #
 #                                   Aliases                                    #
 # ---------------------------------------------------------------------------- #
-iex "$(thefuck --alias)"
 
 # ---------------------------------------------------------------------------- #
 #                                   Functions                                  #
@@ -63,6 +61,59 @@ function nav {
         Write-Host "❌ Path not found: $Path" -ForegroundColor Red
     }
 }
+
+function Set-Symlink {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$Destination, # Path where the symlink will be created
+        [Parameter(Mandatory = $true)]
+        [string]$Source       # Path the symlink will point to
+    )
+
+    # 1. Resolve source path
+    try {
+        $ResolvedSource = Resolve-Path -LiteralPath $Source -ErrorAction Stop
+    }
+    catch {
+        Write-Host "❌ Error: Source path '$Source' not found or inaccessible." -ForegroundColor Red
+        return
+    }
+
+    # 2. Check if destination exists
+    if (Test-Path -LiteralPath $Destination) {
+        Write-Host "⚠️ Destination '$Destination' already exists." -ForegroundColor Yellow
+        $confirmation = Read-Host "Do you want to replace it with a symlink? Type 'YES' to proceed"
+        if ($confirmation -ne 'YES') {
+            Write-Host "❌ Operation cancelled." -ForegroundColor Red
+            return
+        }
+        else {
+            # Attempt to remove only if confirmed
+            try {
+                Get-Item -LiteralPath $Destination -ErrorAction SilentlyContinue | Remove-Item -Recurse -Force -ErrorAction Stop
+                Write-Host "ℹ️ Existing item removed." -ForegroundColor Green
+            }
+            catch {
+                Write-Host "❌ Failed to remove existing item. Aborting." -ForegroundColor Red
+                return
+            }
+        }
+    }
+
+    # 3. Determine if source is a file or directory
+    $itemType = if ((Get-Item -LiteralPath $ResolvedSource.Path).PSIsContainer) { 'Directory' } else { 'File' }
+
+    # 4. Create the symlink
+    try {
+        Write-Host "🔗 Creating symlink: '$Destination' -> '$($ResolvedSource.Path)'" -ForegroundColor Green
+        New-Item -ItemType SymbolicLink -Path $Destination -Target $ResolvedSource.Path -Force | Out-Null
+    }
+    catch {
+        Write-Host "❌ Failed to create symbolic link at '$Destination'." -ForegroundColor Red
+        Write-Host "   Possible reason: run PowerShell as Administrator for symlinks." -ForegroundColor Red
+    }
+}
+
 
 # ------------------------------- yazi function ------------------------------ #
 function y {
